@@ -1,13 +1,22 @@
 import React from "react";
+import PropTypes from "prop-types";
 
-function Business(){
+function Business(props){
 
   return (
     <React.Fragment>
-      <h2>Business Name</h2>
-      <p>rating</p>
+      <h2>{props.name}</h2>
+      <p>{props.address}</p>
+      <p>{props.city}, {props.state}</p>
     </React.Fragment>
   );
 }
 
-export default Ticket;
+Business.propTypes = {
+  name: PropTypes.string,
+  city: PropTypes.string,
+  state: PropTypes.string,
+  address: PropTypes.string
+};
+
+export default Business;

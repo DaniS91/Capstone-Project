@@ -1,13 +1,13 @@
 import React from "react";
 import Header from "./Header";
-import Footer from "./Footer;"
+import BusinessControl from "./BusinessControl";
+
 
 function App(){
   return ( 
     <React.Fragment>
       <Header />
-
-      <Footer />
+      <BusinessControl />
     </React.Fragment>
   );
 }
