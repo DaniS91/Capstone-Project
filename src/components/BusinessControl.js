@@ -7,22 +7,34 @@ class BusinessControl extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      formVisibleOnPage: false
+      formVisibleOnPage: false,
+      mainBusinessList: []
     };
   }
+
+  handleClick = () => {
+    this.setState(prevState => ({
+      formvisibleOnPage: !prevState.formVisibleOnPage
+    }));
+  }
+
   render(){
     let currentlyVisibleState = null;
-    let addBusinessButton = null;
+    let buttonText = null;
+    
     if(this.state.formVisibleOnPage) {
       currentlyVisibleState = <NewBusinessForm />
+      buttonText = "Return to Business List";
     } else {
-      currentlyVisibleState = <BusinessList />
-      addBusinessButton = <button onClick={this.handleClick}>Add business</button>
+      currentlyVisibleState = 
+      <BusinessList 
+        businessList={this.state.mainBusinessList}/>
+      buttonText = "Add Business";
     }
     return(
       <React.Fragment>
         {currentlyVisibleState}
-        {addBusinessButton}
+        <button onClick={this.handleClick}>{buttonText}</button>
       </React.Fragment>
     )
   }

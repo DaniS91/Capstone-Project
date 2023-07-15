@@ -1,9 +1,31 @@
 import React from "react";
 
 function NewBusinessForm(){
+
+  function handleNewBusinessFormSubmission(event) {
+    event.preventDefault();
+  
+  }
   return (
     <React.Fragment>
-      <h3>This is a form.</h3>
+      <form onSubmit={handleNewBusinessFormSubmission}>
+        <input
+          type='text'
+          name='name'
+          placeholder='Business Name' />
+        <input 
+          type='text'
+          name='address'
+          placeholder='Street Address' />
+        <input 
+          type='text'
+          name='city'
+          placeholder='City' />
+        <input 
+          type='text'
+          name='state'
+          placeholder='State' />
+      </form>
     </React.Fragment>
   );
 }
