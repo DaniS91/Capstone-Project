@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { v4 } from 'uuid'
+import ReusableForm from "./ReusableForm";
 
 function NewBusinessForm(props){
 
@@ -21,24 +22,9 @@ function NewBusinessForm(props){
   }
   return (
     <React.Fragment>
-      <form onSubmit={handleNewBusinessFormSubmission}>
-        <input
-          type='text'
-          name='name'
-          placeholder='Business Name' />
-        <input 
-          type='text'
-          name='address'
-          placeholder='Street Address' />
-        <input 
-          type='text'
-          name='city'
-          placeholder='City' />
-        <input 
-          type='text'
-          name='state'
-          placeholder='State' />
-      </form>
+      <ReusableForm 
+        formSubmissionHandler={handleNewBusinessFormSubmission}
+        buttonText="Submit" />
     </React.Fragment>
   );
 }
