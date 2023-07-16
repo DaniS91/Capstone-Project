@@ -1,8 +1,10 @@
 import React, { useState } from "react";
+import Button from '@mui/material/Button';
 import NewBusinessForm from "./NewBusinessForm";
 import BusinessList from "./BusinessList";
 import BusinessDetail from "./BusinessDetail";
 import EditBusinessForm from "./EditBusinessForm";
+import AddBusinessIcon from '@mui/icons-material/AddBusiness';
 
 function BusinessControl() {
 
@@ -53,6 +55,7 @@ function BusinessControl() {
 
   let currentlyVisibleState = null;
   let buttonText = null;
+  let iconName = null;
     
   if (editing) {
     currentlyVisibleState = 
@@ -82,7 +85,12 @@ function BusinessControl() {
   return(
     <React.Fragment>
       {currentlyVisibleState}
-      <button onClick={handleClick}>{buttonText}</button>
+      
+      <Button
+        color="secondary"
+        size="medium" 
+        variant="outlined"
+        onClick={handleClick}><AddBusinessIcon />{buttonText}</Button>
     </React.Fragment>
   )
 }
