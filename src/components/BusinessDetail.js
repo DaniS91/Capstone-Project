@@ -1,12 +1,22 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 function BusinessDetail(props){
+  const { business, onClickingDelete } = props;
+
   return (
     <React.Fragment>
-      <h1>I think this is where the review list will live</h1>
-      <p>Maybe we will also get some map tiles from some API</p>
+      <h1>{business.name}</h1>
+      <p>{business.address}</p>
+      <p>{business.city}, {business.state}</p>
+      <button onClick={()=> onClickingDelete(business.id)}>Delete Business</button>
     </React.Fragment>
   );
 }
+
+BusinessDetail.propTypes = {
+  business: PropTypes.object,
+  onClickingDelete: PropTypes.func
+};
 
 export default BusinessDetail;

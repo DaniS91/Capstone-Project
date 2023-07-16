@@ -6,19 +6,22 @@ function BusinessList(props){
   return(
     <React.Fragment>
         <hr/>
-        {props.mainBusinessList.map((business, index) =>
-          <Business 
+        {props.mainBusinessList.map((business) =>
+          <Business
+            whenBusinessClicked = { props.onBusinessSelection }
             name={business.name}
             address={business.address}
             city={business.city}
             state={business.state}
-            key={index}/>
+            id={business.id}
+            key={business.id}/>
         )}
       </React.Fragment>
   );
 }
 
 BusinessList.propTypes = {
-  businessList: PropTypes.array
+  businessList: PropTypes.array,
+  onBusinessSelection: PropTypes.func
 };
 export default BusinessList;

@@ -5,9 +5,11 @@ function Business(props){
 
   return (
     <React.Fragment>
-      <h2>{props.name}</h2>
-      <p>{props.address}</p>
-      <p>{props.city}, {props.state}</p>
+      <div onClick = {() => props.whenTicketClicked(props.id)}>
+        <h2>{props.name}</h2>
+        <p>{props.address}</p>
+        <p>{props.city}, {props.state}</p>
+      </div>
     </React.Fragment>
   );
 }
