@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 
 function BusinessDetail(props){
-  const { business, onClickingDelete } = props;
+  const { business, onClickingDelete, onClickingEdit } = props;
 
   return (
     <React.Fragment>

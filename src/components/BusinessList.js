@@ -5,8 +5,7 @@ import Business from "./Business";
 function BusinessList(props){
   return(
     <React.Fragment>
-        <hr/>
-        {props.mainBusinessList.map((business) =>
+        {props.businessList.map((business) =>
           <Business
             whenBusinessClicked = { props.onBusinessSelection }
             name={business.name}

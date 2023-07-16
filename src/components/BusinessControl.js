@@ -68,7 +68,7 @@ function BusinessControl() {
 
   const handleEditingBusinessInList = (businessToEdit) => {
     const editedMainBusinessList = mainBusinessList
-                    .filter(business => business.id !== this.state.selectedBusiness.id)
+                    .filter(business => business.id !== selectedBusiness.id)
                     .concat(businessToEdit);
     setMainBusinessList(editedMainBusinessList);
     setEditing(false);
