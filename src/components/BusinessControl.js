@@ -18,84 +18,100 @@ function BusinessControl() {
   // yay hooks here we go
 
   const [formVisibleOnPage, setFormVisibleOnPage] = useState(false);
+  const [mainBusinessList, setMainBusinessList] = useState([]);
+  const [selectedBusiness, setSelectedBusiness] = useState(null);
+  const [editing, setEditing] = useState(false);
 
-  handleClick = () => {
-    if (this.state.selectedBusiness != null) {
+  const handleClick = () => {
+    if (selectedBusiness != null) {
       setFormVisibleOnPage(false);
-      this.setState({
-        formVisibleOnPage: false,
-        selectedBusiness: null,
-        editing: false
-      });
+      setSelectedBusiness(null);
+      setEditing(false);
+      // this.setState({
+      //   formVisibleOnPage: false,
+      //   selectedBusiness: null,
+      //   editing: false
+      // });
     } else {
       setFormVisibleOnPage(!formVisibleOnPage);
     }
   }
 
-  handleEditClick = () => {
-    console.log("we have an editing click");
-    this.setState({editing: true});
+  const handleAddingNewBusinessToList = (newBusiness) => {
+    const newMainBusinessList = mainBusinessList.concat(newBusiness);
+    setMainBusinessList(newMainBusinessList);
+    setFormVisibleOnPage(false);
+    // this.setState({mainBusinessList: newMainBusinessList, formVisibleOnPage: false});
   }
 
-  handleAddingNewBusinessToList = (newBusiness) => {
-    const newMainBusinessList = this.state.mainBusinessList.concat(newBusiness);
-    this.setState({mainBusinessList: newMainBusinessList, formVisibleOnPage: false});
+  const handleChangingSelectedBusiness = (id) => {
+    // safeguarding against conflict in variable name 'selectedbusiness'
+    const selection= mainBusinessList.filter(business => business.id === id)[0];
+    setSelectedBusiness(selection);
   }
 
-  handlechangingSelectedBusiness = (id) => {
-    const selectedBusiness = this.state.mainBusinessList.filter(business => business.id === id)[0];
-    this.setState({selectedBusiness: selectedBusiness});
+  const handleDeletingBusiness = (id) => {
+    const newMainBusinessList = mainBusinessList.filter(business => business.id !== id);
+    setMainBusinessList(newMainBusinessList);
+    setSelectedBusiness(null);
+    // so much cleaner wow
+    // this.setState({
+    //   mainBusinessList: newMainBusinessList,
+    //   selectedBusiness: null
+    // });
+  }
+  
+  const handleEditClick = () => {
+    setEditing(true);
+    // this.setState({editing: true});
   }
 
-  handleDeletingBusiness = (id) => {
-    const newMainBusinessList = this.state.mainBusinessList.filter(business => business.id !== id);
-    this.setState({
-      mainBusinessList: newMainBusinessList,
-      selectedBusiness: null
-    });
-  }
-
-  handleEditingBusinessInList = (businessToEdit) => {
-    const editedMainBusinessList = this.state.mainBusinessList
+  const handleEditingBusinessInList = (businessToEdit) => {
+    const editedMainBusinessList = mainBusinessList
                     .filter(business => business.id !== this.state.selectedBusiness.id)
                     .concat(businessToEdit);
-    this.setState({
-      mainBusinessList: editedMainBusinessList,
-      editing: false,
-      selectedBusiness: null
-    });
+    setMainBusinessList(editedMainBusinessList);
+    setEditing(false);
+    setSelectedBusiness(null);
+    // this.setState({
+    //   mainBusinessList: editedMainBusinessList,
+    //   editing: false,
+    //   selectedBusiness: null
+    // });
   }
 
   let currentlyVisibleState = null;
   let buttonText = null;
     
-  if (this.state.editing) {
+  if (editing) {
     currentlyVisibleState = 
     <EditBusinessForm 
-      business = {this.state.selectedBusiness}
-      onEditBusiness = {this.handleEditingBusinessInList} />
+      business = {selectedBusiness}
+      onEditBusiness = {handleEditingBusinessInList} />
     buttonText= "Return to Business List"
-  } else if (this.state.selectedBusiness != null) {
+  } else if (selectedBusiness != null) {
     currentlyVisibleState = 
     <BusinessDetail
-      business = {this.state.selectedBusiness}
-      onClickingDelete = {this.handleDeletingBusiness}
-      onClickingEdit = {this.handleEditClick} />
+      business = {selectedBusiness}
+      onClickingDelete = {handleDeletingBusiness}
+      onClickingEdit = {handleEditClick} />
     buttonText = "Return to Business List";
-  } else if(this.state.formVisibleOnPage) {
-    currentlyVisibleState = <NewBusinessForm />
+  } else if(formVisibleOnPage) {
+    currentlyVisibleState = 
+    <NewBusinessForm
+      onNewBusinessCreation={handleAddingNewBusinessToList} />
     buttonText = "Return to Business List";
   } else {
     currentlyVisibleState = 
     <BusinessList 
-      businessList={this.state.mainBusinessList}
-      onBusinessSelection={this.handlechangingSelectedBusiness} />
+      businessList={mainBusinessList}
+      onBusinessSelection={handleChangingSelectedBusiness} />
     buttonText = "Add Business";
   }
   return(
     <React.Fragment>
       {currentlyVisibleState}
-      <button onClick={this.handleClick}>{buttonText}</button>
+      <button onClick={handleClick}>{buttonText}</button>
     </React.Fragment>
   )
 }
