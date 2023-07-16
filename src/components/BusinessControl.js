@@ -8,7 +8,8 @@ class BusinessControl extends React.Component {
     super(props);
     this.state = {
       formVisibleOnPage: false,
-      mainBusinessList: []
+      mainBusinessList: [],
+      selectedBusiness: null
     };
   }
 
@@ -16,6 +17,11 @@ class BusinessControl extends React.Component {
     this.setState(prevState => ({
       formvisibleOnPage: !prevState.formVisibleOnPage
     }));
+  }
+
+  handleAddingNewBusinessToList = (newBusiness) => {
+    const newMainBusinessList = this.state.mainBusinessList.concat(newBusiness);
+    this.setState({mainBusinessList: newMainBusinessList, formVisibleOnPage: false});
   }
 
   render(){
