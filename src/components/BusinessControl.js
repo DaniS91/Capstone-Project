@@ -2,6 +2,7 @@ import React from "react";
 import NewBusinessForm from "./NewBusinessForm";
 import BusinessList from "./BusinessList";
 import BusinessDetail from "./BusinessDetail";
+import EditBusinessForm from "./EditBusinessForm";
 
 class BusinessControl extends React.Component {
 
@@ -10,7 +11,8 @@ class BusinessControl extends React.Component {
     this.state = {
       formVisibleOnPage: false,
       mainBusinessList: [],
-      selectedBusiness: null
+      selectedBusiness: null,
+      editing: false
     };
   }
 
@@ -18,13 +20,19 @@ class BusinessControl extends React.Component {
     if (this.state.selectedBusiness != null) {
       this.setState({
         formVisibleOnPage: false,
-        selectedTicket: null
+        selectedBusiness: null,
+        editing: false
       });
     } else {
       this.setState(prevState => ({
         formVisibleOnPage: !prevState.formVisibleOnPage,
       }));
     }
+  }
+
+  handleEditClick = () => {
+    console.log("we have an editing click");
+    this.setState({editing: true});
   }
 
   handleAddingNewBusinessToList = (newBusiness) => {
@@ -45,15 +53,33 @@ class BusinessControl extends React.Component {
     });
   }
 
+  handleEditingBusinessInList = (businessToEdit) => {
+    const editedMainBusinessList = this.state.mainBusinessList
+                    .filter(business => business.id !== this.state.selectedBusiness.id)
+                    .concat(businessToEdit);
+    this.setState({
+      mainBusinessList: editedMainBusinessList,
+      editing: false,
+      selectedBusiness: null
+    });
+  }
+
   render(){
     let currentlyVisibleState = null;
     let buttonText = null;
     
-    if (this.state.selectedBusiness != null) {
+    if (this.state.editing) {
+      currentlyVisibleState = 
+      <EditBusinessForm 
+        business = {this.state.selectedBusiness}
+        onEditBusiness = {this.handleEditingBusinessInList} />
+      buttonText= "Return to Business List"
+    } else if (this.state.selectedBusiness != null) {
       currentlyVisibleState = 
       <BusinessDetail
         business = {this.state.selectedBusiness}
-        onClickingDelete = {this.handleDeletingBusiness} />
+        onClickingDelete = {this.handleDeletingBusiness}
+        onClickingEdit = {this.handleEditClick} />
       buttonText = "Return to Business List";
     } else if(this.state.formVisibleOnPage) {
       currentlyVisibleState = <NewBusinessForm />
@@ -62,7 +88,7 @@ class BusinessControl extends React.Component {
       currentlyVisibleState = 
       <BusinessList 
         businessList={this.state.mainBusinessList}
-        onTicketSelection={this.handlechangingSelectedBusiness} />
+        onBusinessSelection={this.handlechangingSelectedBusiness} />
       buttonText = "Add Business";
     }
     return(
