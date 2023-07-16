@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { v4 } from 'uuid'
-import ReusableForm from "./ReusableForm";
+import ReusableBusinessForm from "./ReusableBusinessForm";
 
 function NewBusinessForm(props){
 
@@ -22,7 +22,7 @@ function NewBusinessForm(props){
   }
   return (
     <React.Fragment>
-      <ReusableForm 
+      <ReusableBusinessForm 
         formSubmissionHandler={handleNewBusinessFormSubmission}
         buttonText="Submit" />
     </React.Fragment>

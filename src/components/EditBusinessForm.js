@@ -1,5 +1,5 @@
 import React from "react";
-import ReusableForm from "./ReusableForm";
+import ReusableBusinessForm from "./ReusableBusinessForm";
 import PropTypes from "prop-types";
 
 function EditBusinessForm (props) {
@@ -20,7 +20,7 @@ function EditBusinessForm (props) {
 
   return (
     <React.Fragment>
-      <ReusableForm 
+      <ReusableBusinessForm 
         formSubmissionHandler={handleEditBusinessFormSubmission}
         buttonText = "Edit Business"/>
     </React.Fragment>
