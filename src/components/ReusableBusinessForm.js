@@ -37,14 +37,9 @@ function ReusableBusinessForm(props) {
           <br></br>
         <input 
           type='text'
-          name='zipcode'
-          placeholder='Zipcode' />
-          <br></br>
-          <input 
-          type='text'
           name='category'
           placeholder='Category' />
-          <br></br>
+        <br></br>
         <button type='submit'>{props.buttonText}</button>
       </form>
     </React.Fragment>

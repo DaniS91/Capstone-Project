@@ -12,6 +12,9 @@ function NewBusinessForm(props){
       address: event.target.address.value,
       city: event.target.city.value,
       state: event.target.state.value,
+      zipcode: parseInt(event.target.zipcode.value),
+      url: event.target.url.value,
+      category: event.target.category.value,
       id: v4()
       // don't forget this is where we parse input for number inputs
       // ie:

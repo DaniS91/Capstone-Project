@@ -12,6 +12,9 @@ function BusinessList(props){
             address={business.address}
             city={business.city}
             state={business.state}
+            zipcode={business.zipcode}
+            url={business.url}
+            category={business.category}
             id={business.id}
             key={business.id}/>
         )}
