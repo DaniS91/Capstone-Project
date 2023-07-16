@@ -1,17 +1,21 @@
 import React from "react";
+import PropTypes from "prop-types";
 
-function Review(){
-  const title = "Great service"
-  const date = "10/22/2022";
-  const reviewText = "Cool vibes and nice employees";
+function Review(props){
+
 
   return(
     <React.Fragment>
-      <h2>{title}</h2>
-      <h3>{date}</h3>
-      <p>{reviewText}</p>
+      <h2>{props.title}</h2>
+      <h3>{props.date}</h3>
+      <p>{props.reviewText}</p>
     </React.Fragment>
   )
 }
 
+Review.propTypes = {
+  title: PropTypes.string,
+  date: PropTypes.string,
+  reviewText: PropTypes.string
+};
 export default Review;

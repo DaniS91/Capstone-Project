@@ -15,6 +15,8 @@ function NewBusinessForm(props){
       zipcode: parseInt(event.target.zipcode.value),
       url: event.target.url.value,
       category: event.target.category.value,
+      // reviewList: []
+      // can i start off with an empty array and concat after a user adds one idk
       id: v4()
       // don't forget this is where we parse input for number inputs
       // ie:
