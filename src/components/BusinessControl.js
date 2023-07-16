@@ -1,32 +1,34 @@
-import React from "react";
+import React, { useState } from "react";
 import NewBusinessForm from "./NewBusinessForm";
 import BusinessList from "./BusinessList";
 import BusinessDetail from "./BusinessDetail";
 import EditBusinessForm from "./EditBusinessForm";
 
-class BusinessControl extends React.Component {
+function BusinessControl() {
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      formVisibleOnPage: false,
-      mainBusinessList: [],
-      selectedBusiness: null,
-      editing: false
-    };
-  }
+  // constructor(props) {
+  //   super(props);
+  //   this.state = {
+  //     formVisibleOnPage: false,
+  //     mainBusinessList: [],
+  //     selectedBusiness: null,
+  //     editing: false
+  //   };
+  // }
+  // yay hooks here we go
+
+  const [formVisibleOnPage, setFormVisibleOnPage] = useState(false);
 
   handleClick = () => {
     if (this.state.selectedBusiness != null) {
+      setFormVisibleOnPage(false);
       this.setState({
         formVisibleOnPage: false,
         selectedBusiness: null,
         editing: false
       });
     } else {
-      this.setState(prevState => ({
-        formVisibleOnPage: !prevState.formVisibleOnPage,
-      }));
+      setFormVisibleOnPage(!formVisibleOnPage);
     }
   }
 
@@ -64,40 +66,38 @@ class BusinessControl extends React.Component {
     });
   }
 
-  render(){
-    let currentlyVisibleState = null;
-    let buttonText = null;
+  let currentlyVisibleState = null;
+  let buttonText = null;
     
-    if (this.state.editing) {
-      currentlyVisibleState = 
-      <EditBusinessForm 
-        business = {this.state.selectedBusiness}
-        onEditBusiness = {this.handleEditingBusinessInList} />
-      buttonText= "Return to Business List"
-    } else if (this.state.selectedBusiness != null) {
-      currentlyVisibleState = 
-      <BusinessDetail
-        business = {this.state.selectedBusiness}
-        onClickingDelete = {this.handleDeletingBusiness}
-        onClickingEdit = {this.handleEditClick} />
-      buttonText = "Return to Business List";
-    } else if(this.state.formVisibleOnPage) {
-      currentlyVisibleState = <NewBusinessForm />
-      buttonText = "Return to Business List";
-    } else {
-      currentlyVisibleState = 
-      <BusinessList 
-        businessList={this.state.mainBusinessList}
-        onBusinessSelection={this.handlechangingSelectedBusiness} />
-      buttonText = "Add Business";
-    }
-    return(
-      <React.Fragment>
-        {currentlyVisibleState}
-        <button onClick={this.handleClick}>{buttonText}</button>
-      </React.Fragment>
-    )
+  if (this.state.editing) {
+    currentlyVisibleState = 
+    <EditBusinessForm 
+      business = {this.state.selectedBusiness}
+      onEditBusiness = {this.handleEditingBusinessInList} />
+    buttonText= "Return to Business List"
+  } else if (this.state.selectedBusiness != null) {
+    currentlyVisibleState = 
+    <BusinessDetail
+      business = {this.state.selectedBusiness}
+      onClickingDelete = {this.handleDeletingBusiness}
+      onClickingEdit = {this.handleEditClick} />
+    buttonText = "Return to Business List";
+  } else if(this.state.formVisibleOnPage) {
+    currentlyVisibleState = <NewBusinessForm />
+    buttonText = "Return to Business List";
+  } else {
+    currentlyVisibleState = 
+    <BusinessList 
+      businessList={this.state.mainBusinessList}
+      onBusinessSelection={this.handlechangingSelectedBusiness} />
+    buttonText = "Add Business";
   }
+  return(
+    <React.Fragment>
+      {currentlyVisibleState}
+      <button onClick={this.handleClick}>{buttonText}</button>
+    </React.Fragment>
+  )
 }
 
 export default BusinessControl;
