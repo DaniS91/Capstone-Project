@@ -1,6 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
 import ReviewList from "./ReviewList";
+import RateReviewIcon from '@mui/icons-material/RateReview';
+import EditIcon from '@mui/icons-material/Edit';
+import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
+import Button from '@mui/material/Button';
 
 function BusinessDetail(props){
   const { business, onClickingDelete, onClickingEdit, onClickingAddReview } = props;
@@ -15,10 +19,28 @@ function BusinessDetail(props){
       <hr></hr>
       <ReviewList />
       <hr></hr>
-      <button onClick={()=> onClickingAddReview(business.id)}>Add Review to Business</button>
-      <hr></hr>
-      <button onClick={()=> onClickingEdit(business.id)}>Edit Business</button>
-      <button onClick={()=> onClickingDelete(business.id)}>Delete Business</button>
+      <Button 
+        onClick={()=> onClickingAddReview(business.id)}
+        color="success"
+        size="small" 
+        variant="contained"
+        startIcon={<RateReviewIcon />}
+        >Add Review</Button>
+      <Button 
+        onClick={()=> onClickingEdit(business.id)}
+        color="info"
+        size="small" 
+        variant="contained"
+        startIcon={<EditIcon />}
+        >Edit</Button>
+      <Button 
+        onClick={()=> onClickingDelete(business.id)}
+        color="error"
+        size="small"
+        variant="contained"
+        startIcon={<DeleteForeverIcon />}
+        >Delete</Button>
+        <hr></hr>
     </React.Fragment>
   );
 }
