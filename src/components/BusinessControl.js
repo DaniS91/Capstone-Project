@@ -5,6 +5,7 @@ import BusinessList from "./BusinessList";
 import BusinessDetail from "./BusinessDetail";
 import EditBusinessForm from "./EditBusinessForm";
 import AddBusinessIcon from '@mui/icons-material/AddBusiness';
+import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
 
 function BusinessControl() {
 
@@ -55,14 +56,15 @@ function BusinessControl() {
 
   let currentlyVisibleState = null;
   let buttonText = null;
-  let iconName = null;
+  let buttonIcon = null;
     
   if (editing) {
     currentlyVisibleState = 
     <EditBusinessForm 
       business = {selectedBusiness}
       onEditBusiness = {handleEditingBusinessInList} />
-    buttonText= "Return to Business List"
+    buttonText = "Return to Business List";
+    buttonIcon = <KeyboardBackspaceIcon />;
   } else if (selectedBusiness != null) {
     currentlyVisibleState = 
     <BusinessDetail
@@ -70,17 +72,20 @@ function BusinessControl() {
       onClickingDelete = {handleDeletingBusiness}
       onClickingEdit = {handleEditClick} />
     buttonText = "Return to Business List";
+    buttonIcon = <KeyboardBackspaceIcon />;
   } else if(formVisibleOnPage) {
     currentlyVisibleState = 
     <NewBusinessForm
       onNewBusinessCreation={handleAddingNewBusinessToList} />
     buttonText = "Return to Business List";
+    buttonIcon = <KeyboardBackspaceIcon />;
   } else {
     currentlyVisibleState = 
     <BusinessList 
       businessList={mainBusinessList}
       onBusinessSelection={handleChangingSelectedBusiness} />
     buttonText = "Add Business";
+    buttonIcon = <AddBusinessIcon />;
   }
   return(
     <React.Fragment>
@@ -90,8 +95,9 @@ function BusinessControl() {
         color="secondary"
         size="medium" 
         variant="outlined"
-        onClick={handleClick}><AddBusinessIcon />{buttonText}</Button>
-    </React.Fragment>
+        onClick={handleClick}
+        startIcon={buttonIcon}>{buttonText}</Button>
+  </React.Fragment>
   )
 }
 
