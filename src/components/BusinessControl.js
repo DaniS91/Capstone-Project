@@ -1,9 +1,14 @@
 import React, { useState } from "react";
 import Button from '@mui/material/Button';
+
 import NewBusinessForm from "./NewBusinessForm";
 import BusinessList from "./BusinessList";
 import BusinessDetail from "./BusinessDetail";
 import EditBusinessForm from "./EditBusinessForm";
+import AddReviewForm from "./AddReviewForm";
+import Review from "./Review";
+import ReviewList from "./ReviewList";
+
 import AddBusinessIcon from '@mui/icons-material/AddBusiness';
 import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
 
@@ -13,12 +18,14 @@ function BusinessControl() {
   const [mainBusinessList, setMainBusinessList] = useState([]);
   const [selectedBusiness, setSelectedBusiness] = useState(null);
   const [editing, setEditing] = useState(false);
+  const [reviewing, setReviewing] = useState(false);
 
   const handleClick = () => {
     if (selectedBusiness != null) {
       setFormVisibleOnPage(false);
       setSelectedBusiness(null);
       setEditing(false);
+      setReviewing(false);
     } else {
       setFormVisibleOnPage(!formVisibleOnPage);
     }
@@ -45,6 +52,11 @@ function BusinessControl() {
     setEditing(true);
   }
 
+  const handleReviewClick = () => {
+    console.log("handleReviewClick function reached!")
+    setReviewing(true);
+  }
+
   const handleEditingBusinessInList = (businessToEdit) => {
     const editedMainBusinessList = mainBusinessList
                     .filter(business => business.id !== selectedBusiness.id)
@@ -54,11 +66,28 @@ function BusinessControl() {
     setSelectedBusiness(null);
   }
 
+  // const handleAddingReview = (businessToReview) => {
+  //   const updatedMainBusinessList = mainBusinessList
+  //                   .filter(business => business.id !== selectedBusiness.id)
+  //                   .concat(businessToReview);
+  //   setMainBusinessList(updatedMainBusinessList);
+  //   setEditing(false);
+  //   setSelectedBusiness(null);
+  // }
+
   let currentlyVisibleState = null;
   let buttonText = null;
   let buttonIcon = null;
-    
-  if (editing) {
+  if (reviewing) {
+    console.log("we are in the reviewing form now")
+    currentlyVisibleState = 
+    <AddReviewForm
+      business = {selectedBusiness}
+      onReviewBusiness = {handleEditingBusinessInList} />
+    buttonText = "Back to Business List";
+    buttonIcon = <KeyboardBackspaceIcon />;
+  }
+  else if (editing) {
     currentlyVisibleState = 
     <EditBusinessForm 
       business = {selectedBusiness}
@@ -70,7 +99,8 @@ function BusinessControl() {
     <BusinessDetail
       business = {selectedBusiness}
       onClickingDelete = {handleDeletingBusiness}
-      onClickingEdit = {handleEditClick} />
+      onClickingEdit = {handleEditClick}
+      onClickingReview={handleReviewClick} />
     buttonText = "Return to Business List";
     buttonIcon = <KeyboardBackspaceIcon />;
   } else if(formVisibleOnPage) {
