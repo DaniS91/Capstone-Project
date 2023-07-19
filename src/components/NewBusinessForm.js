@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { v4 } from 'uuid'
+import { v4 } from 'uuid';
 import ReusableBusinessForm from "./ReusableBusinessForm";
 
 function NewBusinessForm(props){
@@ -15,7 +15,8 @@ function NewBusinessForm(props){
       zipcode: parseInt(event.target.zipcode.value),
       url: event.target.url.value,
       category: event.target.category.value,
-      // reviewList: []
+      reviewList: [],
+      rating: null,
       // can i start off with an empty array and concat after a user adds one idk
       id: v4()
       // don't forget this is where we parse input for number inputs
