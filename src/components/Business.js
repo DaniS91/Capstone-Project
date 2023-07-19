@@ -2,7 +2,6 @@ import React from "react";
 import PropTypes from "prop-types";
 
 function Business(props){
-  console.log(props.neutralRestroom);
   return (
     <React.Fragment>
       <div onClick = {() => props.whenBusinessClicked(props.id)}>
