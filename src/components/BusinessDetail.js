@@ -7,7 +7,7 @@ import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import Button from '@mui/material/Button';
 
 function BusinessDetail(props){
-  const { business, onClickingDelete, onClickingEdit, onClickingAddReview } = props;
+  const { business, onClickingDelete, onClickingEdit, onClickingReview } = props;
 
   return (
     <React.Fragment>
@@ -20,7 +20,7 @@ function BusinessDetail(props){
       <ReviewList />
       <hr></hr>
       <Button 
-        onClick={()=> onClickingAddReview(business.id)}
+        onClick={()=> onClickingReview(business.id)}
         color="success"
         size="small" 
         variant="contained"
@@ -49,7 +49,7 @@ BusinessDetail.propTypes = {
   business: PropTypes.object,
   onClickingDelete: PropTypes.func,
   onClickingEdit: PropTypes.func,
-  onClickingAddReview: PropTypes.func
+  onClickingReview: PropTypes.func
 };
 
 export default BusinessDetail;
