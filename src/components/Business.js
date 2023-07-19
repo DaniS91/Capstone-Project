@@ -7,7 +7,8 @@ function Business(props){
     <React.Fragment>
       <div onClick = {() => props.whenBusinessClicked(props.id)}>
         <h2>{props.name}</h2>
-        <p>{props.address}, {props.city}, {props.state}</p>
+        <h3>{props.category}</h3>
+        <p>{props.city}, {props.state}</p>
       </div>
     </React.Fragment>
   );
