@@ -1,31 +1,23 @@
 import React from "react";
 import Review from "./Review";
+import PropTypes from "prop-types";
 
-const mainReviewList = [
-  {
-    title: 'Bathrooms suck',
-    date: '3/4/23',
-    reviewText: 'Negative restroom experience'
-  },
-  {
-    title: 'Cute place',
-    date: '10/26/22',
-    reviewText: 'nice food and friendly employees'
-  }
-];
-
-function ReviewList(){
-
+function ReviewList(props){
   return(
     <React.Fragment>
-      {mainReviewList.map((review, index) =>
+      {props.reviewList.map((review) =>
         <Review 
-          title={review.title}
-          date={review.date}
-          reviewText={review.reviewText} />
+          title={review.reviewTitle}
+          rating={review.rating}
+          reviewText={review.reviewText}
+          key={review.id} />
       )}
     </React.Fragment>
   )
 }
+
+ReviewList.propTypes = {
+  reviewList: PropTypes.array
+};
 
 export default ReviewList;

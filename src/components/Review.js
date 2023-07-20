@@ -2,12 +2,12 @@ import React from "react";
 import PropTypes from "prop-types";
 
 function Review(props){
-
+ console.log(props.title);
 
   return(
     <React.Fragment>
       <h2>{props.title}</h2>
-      <h3>{props.date}</h3>
+      <h3>{props.rating}</h3>
       <p>{props.reviewText}</p>
     </React.Fragment>
   )
@@ -15,7 +15,7 @@ function Review(props){
 
 Review.propTypes = {
   title: PropTypes.string,
-  date: PropTypes.string,
+  rating: PropTypes.string,
   reviewText: PropTypes.string
 };
 export default Review;
