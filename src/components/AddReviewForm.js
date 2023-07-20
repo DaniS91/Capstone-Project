@@ -21,7 +21,8 @@ function AddReviewForm (props) {
       id: v4()
     };
     //send the review back to businesscontrol to add to the business??? idk man
-    onReviewBusiness(review);
+    console.log("handleformsubmission function has been reached")
+    props.onReviewBusiness(review);
   }
 
   return (
