@@ -68,22 +68,22 @@ function BusinessControl() {
 
   const handleAddingReview = (review) => {
     console.log("We're in handleAddingReview function");
-    // console.log(review);
-    // setting the new business stuff
+    
     setSelectedBusiness((prevSelectedBusiness) => {
-      const selectedBusiness = { ...prevSelectedBusiness};
-    // concat new review to list of reviews
-      selectedBusiness.reviewList = selectedBusiness.reviewList.concat(review);
-      console.log(selectedBusiness);
-      setEditing(false);
-      setReviewing(false);
+      const updatedBusiness = { ...prevSelectedBusiness};
+    
+      updatedBusiness.reviewList = selectedBusiness.reviewList.concat(review);
+      console.log(updatedBusiness);
+      console.log(updatedBusiness.reviewList);
+      const editedMainBusinessList = mainBusinessList
+                    .filter(business => business.id !== updatedBusiness.id)
+                    .concat(updatedBusiness);
+    setMainBusinessList(editedMainBusinessList);
+    setEditing(false);
+    setSelectedBusiness(null);
+    setReviewing(false);
     })
-    // const updatedMainBusinessList = mainBusinessList
-    //                 .filter(business => business.id !== selectedBusiness.id)
-    //                 .concat(businessToReview);
-    // setMainBusinessList(updatedMainBusinessList);
-    // setEditing(false);
-    // setSelectedBusiness(null);
+   
   }
 
   let currentlyVisibleState = null;
