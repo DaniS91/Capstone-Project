@@ -25,7 +25,8 @@
 * 10:15 pm - 11:00 pm - setting up project with create-reac-app and repo, a few basic components added
   - link to the initial setup repo: [HERE][Project repo]
 
-
+### Wednesday 7/19/23
+* 6:30 pm - x:xx pm - researching a different database to use with app, maybe postgresql
 
 
 
