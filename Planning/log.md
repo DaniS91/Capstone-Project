@@ -26,7 +26,7 @@
   - link to the initial setup repo: [HERE][Project repo]
 
 ### Wednesday 7/19/23
-* 6:30 pm - x:xx pm - researching a different database to use with app, maybe postgresql
+* 6:30 pm - 7:02 pm - researching a different database to use with app, maybe postgresql
 
 
 
