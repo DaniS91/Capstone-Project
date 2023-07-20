@@ -17,7 +17,8 @@ function BusinessDetail(props){
       <p>{props.category}</p>
       <p>{props.url}</p>
       <hr></hr>
-      <ReviewList />
+      <ReviewList 
+        reviewList={business.reviewList}/>
       <hr></hr>
       <Button 
         onClick={()=> onClickingReview(business.id)}
