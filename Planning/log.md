@@ -27,7 +27,7 @@
 
 ### Wednesday 7/19/23
 * 6:30 pm - 7:02 pm - researching a different database to use with app, maybe postgresql
-* 8:30 pm - x:xx pm - reviewing integrating firestore with react app from class lessons/researching using context
+* 8:30 pm - 8:58 pm - reviewing integrating firestore with react app from class lessons/researching using context
 
 
 
