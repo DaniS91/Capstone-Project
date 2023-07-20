@@ -1,5 +1,4 @@
 import React from "react";
-import ReusableBusinessForm from "./ReusableBusinessForm";
 import PropTypes from "prop-types";
 import { v4 } from 'uuid';
 
@@ -16,7 +15,7 @@ function AddReviewForm (props) {
     let review = {
       reviewTitle: event.target.reviewTitle.value,
       rating: event.target.rating.value,
-      reviewText: event.target.rating.value,
+      reviewText: event.target.reviewText.value,
       businessId: business.id,
       id: v4()
     };
@@ -41,7 +40,7 @@ function AddReviewForm (props) {
         <input 
           type='text'
           name='reviewText'
-          placeholder='You Review' />
+          placeholder='Your Review' />
           <br></br>
         <br></br>
         <button type='submit'>Submit</button>
