@@ -6,8 +6,8 @@ import BusinessList from "./BusinessList";
 import BusinessDetail from "./BusinessDetail";
 import EditBusinessForm from "./EditBusinessForm";
 import AddReviewForm from "./AddReviewForm";
-import Review from "./Review";
-import ReviewList from "./ReviewList";
+// import Review from "./Review";
+// import ReviewList from "./ReviewList";
 
 import AddBusinessIcon from '@mui/icons-material/AddBusiness';
 import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
@@ -66,14 +66,25 @@ function BusinessControl() {
     setSelectedBusiness(null);
   }
 
-  // const handleAddingReview = (businessToReview) => {
-  //   const updatedMainBusinessList = mainBusinessList
-  //                   .filter(business => business.id !== selectedBusiness.id)
-  //                   .concat(businessToReview);
-  //   setMainBusinessList(updatedMainBusinessList);
-  //   setEditing(false);
-  //   setSelectedBusiness(null);
-  // }
+  const handleAddingReview = (review) => {
+    console.log("We're in handleAddingReview function");
+    // console.log(review);
+    // setting the new business stuff
+    setSelectedBusiness((prevSelectedBusiness) => {
+      const selectedBusiness = { ...prevSelectedBusiness};
+    // concat new review to list of reviews
+      selectedBusiness.reviewList = selectedBusiness.reviewList.concat(review);
+      console.log(selectedBusiness);
+      setEditing(false);
+      setReviewing(false);
+    })
+    // const updatedMainBusinessList = mainBusinessList
+    //                 .filter(business => business.id !== selectedBusiness.id)
+    //                 .concat(businessToReview);
+    // setMainBusinessList(updatedMainBusinessList);
+    // setEditing(false);
+    // setSelectedBusiness(null);
+  }
 
   let currentlyVisibleState = null;
   let buttonText = null;
@@ -83,7 +94,7 @@ function BusinessControl() {
     currentlyVisibleState = 
     <AddReviewForm
       business = {selectedBusiness}
-      onReviewBusiness = {handleEditingBusinessInList} />
+      onReviewBusiness = {handleAddingReview} />
     buttonText = "Back to Business List";
     buttonIcon = <KeyboardBackspaceIcon />;
   }
