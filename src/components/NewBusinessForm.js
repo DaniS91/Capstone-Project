@@ -15,6 +15,9 @@ function NewBusinessForm(props){
       zipcode: parseInt(event.target.zipcode.value),
       url: event.target.url.value,
       category: event.target.category.value,
+      description: event.target.description.value,
+      accessibility: event.target.accessibility.checked,
+      restrooms: event.target.restrooms.checked,
       // add more properties
       reviewList: [],
       rating: null,

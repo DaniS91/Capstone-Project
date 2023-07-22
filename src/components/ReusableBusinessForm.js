@@ -40,6 +40,19 @@ function ReusableBusinessForm(props) {
           name='category'
           placeholder='Category' />
         <br></br>
+        <input 
+          type='text'
+          name='description'
+          placeholder='Short description' />
+        <br></br>
+        <label>
+        Wheelchair-accessible: <input type="checkbox" name="accessibility" defaultChecked={false} />
+        </label>
+        <br></br>
+        <label>
+        Gender-neutral restroom available: <input type="checkbox" name="restrooms" defaultChecked={false} />
+        </label>
+        <br></br>
         <button type='submit'>{props.buttonText}</button>
       </form>
     </React.Fragment>
