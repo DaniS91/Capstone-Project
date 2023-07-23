@@ -7,7 +7,7 @@ import BusinessDetail from "./BusinessDetail";
 import EditBusinessForm from "./EditBusinessForm";
 import AddReviewForm from "./AddReviewForm";
 import db from './../firebase.js';
-import { collection, addDoc } from "firebase/firestore";
+import { collection, addDoc, onSnapshot } from "firebase/firestore";
 // import Review from "./Review";
 // import ReviewList from "./ReviewList";
 
@@ -21,6 +21,27 @@ function BusinessControl() {
   const [selectedBusiness, setSelectedBusiness] = useState(null);
   const [editing, setEditing] = useState(false);
   const [reviewing, setReviewing] = useState(false);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const unSubscribe = onSnapshot(
+      collection(db, "businesses"),
+      (collectionSnapshot) => {
+        const businesses = [];
+        collectionSnapshot.forEach((doc) => {
+          businesses.push({
+            ... doc.data(),
+            id: doc.id
+          });
+        });
+        setMainBusinessList(businesses);
+      },
+      (error) => {
+        setError(error.message);
+      }
+    );
+    return () => unSubscribe();
+  }, []);
 
   const handleClick = () => {
     if (selectedBusiness != null) {
@@ -87,13 +108,15 @@ function BusinessControl() {
     setSelectedBusiness(null);
     setReviewing(false);
     })
-   
   }
 
   let currentlyVisibleState = null;
   let buttonText = null;
   let buttonIcon = null;
-  if (reviewing) {
+
+  if (error) {
+    currentlyVisibleState = <p>There was an error: {error}</p>
+  } else if (reviewing) {
     console.log("we are in the reviewing form now")
     currentlyVisibleState = 
     <AddReviewForm
@@ -101,8 +124,7 @@ function BusinessControl() {
       onReviewBusiness = {handleAddingReview} />
     buttonText = "Back to Business List";
     buttonIcon = <KeyboardBackspaceIcon />;
-  }
-  else if (editing) {
+  } else if (editing) {
     currentlyVisibleState = 
     <EditBusinessForm 
       business = {selectedBusiness}
@@ -137,12 +159,12 @@ function BusinessControl() {
     <React.Fragment>
       {currentlyVisibleState}
       
-      <Button
+      {error? null: <Button
         color="secondary"
         size="medium" 
         variant="outlined"
         onClick={handleClick}
-        startIcon={buttonIcon}>{buttonText}</Button>
+        startIcon={buttonIcon}>{buttonText}</Button>}
   </React.Fragment>
   )
 }
