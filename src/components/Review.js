@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import Rating from '@mui/material/Rating';
 
 function Review(props){
  console.log(props.title);
@@ -7,7 +8,9 @@ function Review(props){
   return(
     <React.Fragment>
       <h2>{props.title}</h2>
-      <h3>{props.rating}</h3>
+      <Rating 
+        value={props.rating}
+        readOnly="true"/>
       <p>{props.reviewText}</p>
     </React.Fragment>
   )
