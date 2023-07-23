@@ -8,14 +8,17 @@ import Button from '@mui/material/Button';
 
 function BusinessDetail(props){
   const { business, onClickingDelete, onClickingEdit, onClickingReview } = props;
-
+  
   return (
     <React.Fragment>
       <h1>{business.name}</h1>
       <p>{business.address}</p>
-      <p>{business.city}, {business.state}  {props.zipcode}</p>
-      <p>{props.category}</p>
-      <p>{props.url}</p>
+      <p>{business.city}, {business.state}  {business.zipcode}</p>
+      <p>{business.category}</p>
+      <a href={business.url}>Website</a>
+      <p>{business.description}</p>
+      <p>Wheelchair Accessible: {business.accessibility ? "Yes" : "No"}</p>
+      <p>Gender-Neutral Restrooms: {business.restrooms ? "Yes" : "No"}</p>
       <hr></hr>
       <ReviewList 
         reviewList={business.reviewList}/>

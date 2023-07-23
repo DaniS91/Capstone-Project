@@ -73,6 +73,7 @@ function BusinessControl() {
       const updatedBusiness = { ...prevSelectedBusiness};
     
       updatedBusiness.reviewList = selectedBusiness.reviewList.concat(review);
+      updatedBusiness.rating = selectedBusiness.rating;
       console.log(updatedBusiness);
       console.log(updatedBusiness.reviewList);
       const editedMainBusinessList = mainBusinessList
@@ -106,6 +107,7 @@ function BusinessControl() {
     buttonText = "Return to Business List";
     buttonIcon = <KeyboardBackspaceIcon />;
   } else if (selectedBusiness != null) {
+    console.log(selectedBusiness);
     currentlyVisibleState = 
     <BusinessDetail
       business = {selectedBusiness}
