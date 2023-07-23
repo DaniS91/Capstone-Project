@@ -29,6 +29,7 @@
 * 6:30 pm - 7:02 pm - researching a different database to use with app, maybe postgresql
 * 8:30 pm - 8:58 pm - reviewing integrating firestore with react app from class lessons/researching using context
 
-
+### Saturday 7/22/23
+* 6:30 pm - x:xx pm - researching map api -- Radar for address validation and map tile
 
   [Project repo]: https://github.com/DaniS91/Capstone-Project
