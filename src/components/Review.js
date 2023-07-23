@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 import Rating from '@mui/material/Rating';
 
 function Review(props){
- console.log(props.title);
 
   return(
     <React.Fragment>
@@ -18,7 +17,7 @@ function Review(props){
 
 Review.propTypes = {
   title: PropTypes.string,
-  rating: PropTypes.string,
+  rating: PropTypes.number,
   reviewText: PropTypes.string
 };
 export default Review;
