@@ -30,6 +30,12 @@
 * 8:30 pm - 8:58 pm - reviewing integrating firestore with react app from class lessons/researching using context
 
 ### Saturday 7/22/23
-* 6:30 pm - x:xx pm - researching map api -- Radar for address validation and map tile
+* 6:30 pm - 7:30 pm - researching map api -- Radar for address validation and map tile
+  - Radar seems like best fit
+  - [Radar Documentation][Radar Docs]
+  - address autocomplete and validation
+  - geocoding address -> long, lat
+  - map tiles
 
   [Project repo]: https://github.com/DaniS91/Capstone-Project
+  [Radar Docs]: https://radar.com/documentation/
