@@ -14,7 +14,7 @@ function AddReviewForm (props) {
     event.preventDefault();
     let review = {
       reviewTitle: event.target.reviewTitle.value,
-      rating: event.target.rating.value,
+      rating: parseInt(event.target.rating.value),
       reviewText: event.target.reviewText.value,
       businessId: business.id,
       id: v4()
