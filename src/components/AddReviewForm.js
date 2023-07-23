@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import Rating from '@mui/material/Rating';
 import { v4 } from 'uuid';
 
 function AddReviewForm (props) {
@@ -25,11 +26,12 @@ function AddReviewForm (props) {
           name='reviewTitle'
           placeholder='Your Review Title' />
         <br></br>
-        <input 
-          type='text'
-          name='rating'
-          placeholder='Rating' />
-          <br></br>
+        <Rating 
+          name="rating"
+          precision="1"
+          size="medium"
+          />
+        <br></br> 
         <input 
           type='text'
           name='reviewText'
