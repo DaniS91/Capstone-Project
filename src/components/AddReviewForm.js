@@ -33,7 +33,6 @@ function AddReviewForm (props) {
           p: 2,
           display: 'grid'
         }}>
-      {/* <form onSubmit={handleAddReviewFormSubmission}> */}
         <TextField
           type='text'
           name='reviewTitle'
@@ -56,7 +55,6 @@ function AddReviewForm (props) {
           size="small" 
           variant="contained">Submit</Button>
       </Box>
-      {/* </form> */}
     </React.Fragment>
   )
 }

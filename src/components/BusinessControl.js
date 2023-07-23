@@ -6,6 +6,8 @@ import BusinessList from "./BusinessList";
 import BusinessDetail from "./BusinessDetail";
 import EditBusinessForm from "./EditBusinessForm";
 import AddReviewForm from "./AddReviewForm";
+import db from './../firebase.js';
+import { collection, addDoc } from "firebase/firestore";
 // import Review from "./Review";
 // import ReviewList from "./ReviewList";
 
@@ -31,9 +33,10 @@ function BusinessControl() {
     }
   }
 
-  const handleAddingNewBusinessToList = (newBusiness) => {
-    const newMainBusinessList = mainBusinessList.concat(newBusiness);
-    setMainBusinessList(newMainBusinessList);
+  const handleAddingNewBusinessToList = async (newBusinessData) => {
+    await addDoc(collection(db, "businesses"), newBusinessData);
+    // const newMainBusinessList = mainBusinessList.concat(newBusiness);
+    // setMainBusinessList(newMainBusinessList);
     setFormVisibleOnPage(false);
   }
 
