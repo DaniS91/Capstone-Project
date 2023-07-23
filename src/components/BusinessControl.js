@@ -7,7 +7,7 @@ import BusinessDetail from "./BusinessDetail";
 import EditBusinessForm from "./EditBusinessForm";
 import AddReviewForm from "./AddReviewForm";
 import db from './../firebase.js';
-import { collection, addDoc, onSnapshot, doc, updateDoc } from "firebase/firestore";
+import { collection, addDoc, onSnapshot, doc, updateDoc, deleteDoc } from "firebase/firestore";
 // import Review from "./Review";
 // import ReviewList from "./ReviewList";
 
@@ -66,9 +66,11 @@ function BusinessControl() {
     setSelectedBusiness(selection);
   }
 
-  const handleDeletingBusiness = (id) => {
-    const newMainBusinessList = mainBusinessList.filter(business => business.id !== id);
-    setMainBusinessList(newMainBusinessList);
+  const handleDeletingBusiness = async (id) => {
+    await deleteDoc(doc(db, "businesses", id));
+
+    // const newMainBusinessList = mainBusinessList.filter(business => business.id !== id);
+    // setMainBusinessList(newMainBusinessList);
     setSelectedBusiness(null);
   }
   
@@ -91,25 +93,37 @@ function BusinessControl() {
     setEditing(false);
     setSelectedBusiness(null);
   }
+  
+  const handleAddingReview = async (review) => {
+ 
+    // const newBusinessRating = review.rating;
+    const newReviewList = selectedBusiness.reviewList.concat(review);
+    const ratedBusiness = {...selectedBusiness};
+    // oh no....
+    // I'm going to have to make a new rating function to update the rating
+    // this just updates the rating to the latest rating
+    // I really should have seen this coming
+    // ratedBusiness.rating = newBusinessRating;
+    ratedBusiness.reviewList = newReviewList;
+    // this seems so contrived, I know there is a better way to do this
+    // setSelectedBusiness((prevSelectedBusiness) => {
+    //   const updatedBusiness = { ...prevSelectedBusiness};
+    
+    //   updatedBusiness.reviewList = selectedBusiness.reviewList.concat(review);
+    //   updatedBusiness.rating = selectedBusiness.rating;
+    //   console.log(updatedBusiness);
+    //   console.log(updatedBusiness.reviewList);
+    //   const editedMainBusinessList = mainBusinessList
+    //                 .filter(business => business.id !== updatedBusiness.id)
+    //                 .concat(updatedBusiness);
+    // setMainBusinessList(editedMainBusinessList);
+    // })
 
-  const handleAddingReview = (review) => {
-    console.log("We're in handleAddingReview function");
-    
-    setSelectedBusiness((prevSelectedBusiness) => {
-      const updatedBusiness = { ...prevSelectedBusiness};
-    
-      updatedBusiness.reviewList = selectedBusiness.reviewList.concat(review);
-      updatedBusiness.rating = selectedBusiness.rating;
-      console.log(updatedBusiness);
-      console.log(updatedBusiness.reviewList);
-      const editedMainBusinessList = mainBusinessList
-                    .filter(business => business.id !== updatedBusiness.id)
-                    .concat(updatedBusiness);
-    setMainBusinessList(editedMainBusinessList);
+    const businessRef = doc(db, "businesses", selectedBusiness.id);
+    await updateDoc(businessRef, ratedBusiness);
     setEditing(false);
     setSelectedBusiness(null);
     setReviewing(false);
-    })
   }
 
   let currentlyVisibleState = null;
