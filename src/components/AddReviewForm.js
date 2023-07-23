@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import Rating from '@mui/material/Rating';
+import Button from '@mui/material/Button';
 import { v4 } from 'uuid';
 
 function AddReviewForm (props) {
@@ -38,7 +39,10 @@ function AddReviewForm (props) {
           placeholder='Your Review' />
           <br></br>
         <br></br>
-        <button type='submit'>Submit</button>
+        <Button type='submit'
+          color="success"
+          size="small" 
+          variant="contained">Submit</Button>
       </form>
     </React.Fragment>
   )

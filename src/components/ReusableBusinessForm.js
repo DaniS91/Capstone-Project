@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import Button from '@mui/material/Button';
 
 function ReusableBusinessForm(props) {
 
@@ -63,7 +64,12 @@ const stateAbbreviations = [ 'AL', 'AK', 'AS', 'AZ', 'AR', 'CA', 'CO', 'CT', 'DE
         Gender-neutral restroom available: <input type="checkbox" name="restrooms" defaultChecked={false} />
         </label>
         <br></br>
-        <button type='submit'>{props.buttonText}</button>
+        <Button 
+          type='submit'
+          color="success"
+          size="small" 
+          variant="contained">{props.buttonText}
+          </Button>
       </form>
     </React.Fragment>
   );
