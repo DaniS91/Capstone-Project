@@ -5,6 +5,10 @@ import RateReviewIcon from '@mui/icons-material/RateReview';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import Button from '@mui/material/Button';
+import AccessibleIcon from '@mui/icons-material/Accessible';
+import NotAccessibleIcon from '@mui/icons-material/NotAccessible';
+import WcIcon from '@mui/icons-material/Wc';
+import HowToRegIcon from '@mui/icons-material/HowToReg';
 
 function BusinessDetail(props){
   const { business, onClickingDelete, onClickingEdit, onClickingReview } = props;
@@ -17,8 +21,9 @@ function BusinessDetail(props){
       <p>{business.category}</p>
       <a href={business.url}>Website</a>
       <p>{business.description}</p>
-      <p>Wheelchair Accessible: {business.accessibility ? "Yes" : "No"}</p>
-      <p>Gender-Neutral Restrooms: {business.restrooms ? "Yes" : "No"}</p>
+      
+      <p>{business.accessibility ? <AccessibleIcon fontSize="inherit"/> : <NotAccessibleIcon fontSize="inherit"/>}Wheelchair Accessible: {business.accessibility ? "Yes" : "No"}</p>
+      <p>{business.restrooms ? <HowToRegIcon fontSize="inherit"/> : <WcIcon fontSize="inherit"/>}Gender-Neutral Restrooms: {business.restrooms ? "Yes" : "No"}</p>
       <hr></hr>
       <ReviewList 
         reviewList={business.reviewList}/>
