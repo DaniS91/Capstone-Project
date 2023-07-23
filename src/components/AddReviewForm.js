@@ -2,6 +2,9 @@ import React from "react";
 import PropTypes from "prop-types";
 import Rating from '@mui/material/Rating';
 import Button from '@mui/material/Button';
+import Box from '@mui/material/Button';
+import TextField from '@mui/material/TextField';
+
 import { v4 } from 'uuid';
 
 function AddReviewForm (props) {
@@ -21,11 +24,20 @@ function AddReviewForm (props) {
 
   return (
     <React.Fragment>
-      <form onSubmit={handleAddReviewFormSubmission}>
-        <input
+      <Box
+        component="form"
+        onSubmit={handleAddReviewFormSubmission}
+        sx={{
+          boxShadow: 1,
+          borderRadius: 2,
+          p: 2,
+          display: 'grid'
+        }}>
+      {/* <form onSubmit={handleAddReviewFormSubmission}> */}
+        <TextField
           type='text'
           name='reviewTitle'
-          placeholder='Your Review Title' />
+          label='Your Review Title' />
         <br></br>
         <Rating 
           name="rating"
@@ -33,17 +45,18 @@ function AddReviewForm (props) {
           size="medium"
           />
         <br></br> 
-        <input 
+        <TextField 
           type='text'
           name='reviewText'
-          placeholder='Your Review' />
+          label='Your Review' />
           <br></br>
         <br></br>
         <Button type='submit'
           color="success"
           size="small" 
           variant="contained">Submit</Button>
-      </form>
+      </Box>
+      {/* </form> */}
     </React.Fragment>
   )
 }
