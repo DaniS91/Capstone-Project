@@ -1,6 +1,5 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { v4 } from 'uuid';
 import ReusableBusinessForm from "./ReusableBusinessForm";
 
 function NewBusinessForm(props){
@@ -18,10 +17,8 @@ function NewBusinessForm(props){
       description: event.target.description.value,
       accessibility: event.target.accessibility.checked,
       restrooms: event.target.restrooms.checked,
-      // add more properties
       reviewList: [],
       rating: null,
-      id: v4()
     })
   
   }
