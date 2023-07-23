@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Button from '@mui/material/Button';
 
 import NewBusinessForm from "./NewBusinessForm";
@@ -7,7 +7,7 @@ import BusinessDetail from "./BusinessDetail";
 import EditBusinessForm from "./EditBusinessForm";
 import AddReviewForm from "./AddReviewForm";
 import db from './../firebase.js';
-import { collection, addDoc, onSnapshot } from "firebase/firestore";
+import { collection, addDoc, onSnapshot, doc, updateDoc } from "firebase/firestore";
 // import Review from "./Review";
 // import ReviewList from "./ReviewList";
 
@@ -30,7 +30,7 @@ function BusinessControl() {
         const businesses = [];
         collectionSnapshot.forEach((doc) => {
           businesses.push({
-            ... doc.data(),
+            ...doc.data(),
             id: doc.id
           });
         });
@@ -81,11 +81,13 @@ function BusinessControl() {
     setReviewing(true);
   }
 
-  const handleEditingBusinessInList = (businessToEdit) => {
-    const editedMainBusinessList = mainBusinessList
-                    .filter(business => business.id !== selectedBusiness.id)
-                    .concat(businessToEdit);
-    setMainBusinessList(editedMainBusinessList);
+  const handleEditingBusinessInList = async (businessToEdit) => {
+    const businessRef = doc(db, "businesses", businessToEdit.id);
+    await updateDoc(businessRef, businessToEdit);
+    // const editedMainBusinessList = mainBusinessList
+    //                 .filter(business => business.id !== selectedBusiness.id)
+    //                 .concat(businessToEdit);
+    // setMainBusinessList(editedMainBusinessList);
     setEditing(false);
     setSelectedBusiness(null);
   }
