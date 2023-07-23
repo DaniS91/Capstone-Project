@@ -40,6 +40,8 @@
 ### Sunday 7/23/23
 * 11:10 am - x:xx am - creating firebase project, database, configurations, and researching firestore extension
   - didn't even think about firebase having google api extensions, so excited
-  - they have address validation etc
+  - they have [address validation:][Address V]
+  - does require a pay-as-you-go pricing plan, isn't super transparent about the pricing
   [Project repo]: https://github.com/DaniS91/Capstone-Project
   [Radar Docs]: https://radar.com/documentation/
+  [Address V]: https://extensions.dev/extensions/googlemapsplatform/firestore-validate-address
