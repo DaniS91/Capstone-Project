@@ -1,6 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
 import Button from '@mui/material/Button';
+import Box from '@mui/material/Button';
+import TextField from '@mui/material/TextField';
+import MenuItem from '@mui/material/MenuItem';
 
 function ReusableBusinessForm(props) {
 
@@ -8,53 +11,62 @@ const stateAbbreviations = [ 'AL', 'AK', 'AS', 'AZ', 'AR', 'CA', 'CO', 'CT', 'DE
 
   return (
     <React.Fragment>
-      <form onSubmit={props.formSubmissionHandler}>
-        <input
+      <Box
+        component="form"
+        onSubmit={props.formSubmissionHandler}
+        sx={{
+          boxShadow: 1,
+          borderRadius: 2,
+          p: 2,
+          display: 'grid'
+        }}>
+      {/* <form onSubmit={props.formSubmissionHandler}> */}
+        <TextField
           type='text'
           name='name'
-          placeholder='Business Name' />
+          label='Business Name' />
         <br></br>
-        <input 
+        <TextField 
           type='text'
           name='address'
-          placeholder='Street Address' />
+          label='Street Address' />
           <br></br>
-        <input 
+        <TextField 
           type='text'
           name='city'
-          placeholder='City' />
+          label='City' />
         <br></br>
-          <label name="state">State:</label>
-          <select id="state" name="state">
-            <option value="">Select a state:</option>
-            {stateAbbreviations.map((stateAbbr) => (
-              <option key={stateAbbr} value={stateAbbr}>
-                {stateAbbr}
-              </option>
-            ))}
-          </select>
-        
-        <br></br>
+        <TextField
+          select 
+          label="State:" 
+          name="state"
+          helperText="Please select a state">
+            {stateAbbreviations.map((option) => (
+            <MenuItem key={option} value={option}>
+              {option}
+            </MenuItem>
+          ))}
+          </TextField>
           <br></br>
-        <input 
+        <TextField 
           type='text'
           name='zipcode'
-          placeholder='Zipcode' />
+          label='Zipcode' />
           <br></br>
-        <input 
+        <TextField 
           type='text'
           name='url'
-          placeholder='Website URL' />
+         label='Website URL' />
           <br></br>
-        <input 
+        <TextField 
           type='text'
           name='category'
-          placeholder='Category' />
+          label='Category' />
         <br></br>
-        <input 
+        <TextField 
           type='text'
           name='description'
-          placeholder='Short description' />
+          label='Short description' />
         <br></br>
         <label>
         Wheelchair-accessible: <input type="checkbox" name="accessibility" defaultChecked={false} />
@@ -70,7 +82,7 @@ const stateAbbreviations = [ 'AL', 'AK', 'AS', 'AZ', 'AR', 'CA', 'CO', 'CT', 'DE
           size="small" 
           variant="contained">{props.buttonText}
           </Button>
-      </form>
+      </Box>
     </React.Fragment>
   );
 }
