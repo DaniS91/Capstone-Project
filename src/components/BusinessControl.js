@@ -87,8 +87,10 @@ function BusinessControl() {
     if (reviews.length === 0) {
       return null;
     }
-    const totalRating = reviews.reduce((accumulator, review) => accumulator + review.rating, 0);
+    const ratingsArray = reviews.map((review) => review.rating);
+    const totalRating = ratingsArray.reduce((accumulator, rating) => accumulator + rating, 0);
     const averageRating = (totalRating/ reviews.length).toFixed(0);
+    console.log(averageRating);
     return averageRating;
   }
   const handleEditingBusinessInList = async (businessToEdit) => {
@@ -103,21 +105,20 @@ function BusinessControl() {
     const ratedBusiness = {...selectedBusiness};
    // handle new review and update db
     ratedBusiness.reviewList = newReviewList;
+    const newAverageRating =  await calculateAverageRating(newReviewList);
+    // console.log(ratedBusiness);
+    console.log(newAverageRating);
     const businessRef = doc(db, "businesses", selectedBusiness.id);
+    // await updateDoc(businessRef, ratedBusiness);
     await updateDoc(businessRef, {
       reviewList: newReviewList,
-      rating: calculateAverageRating(newReviewList)
-    });
-    //update avg rating in business
-    // const reviewsQuery = query(collection(db, 'reviews'), where('businessId', '==', selectedBusiness.id));
-    // const querySnapshot = await getDocs(reviewsQuery);
-    // const reviews = querySnapshot.docs.map((doc) => doc.data());
-
-    const newAverageRating = calculateAverageRating(newReviewList);
-
+      avgRating: newAverageRating
+    })
+  // handle updating average ratings using calculate averagerating
+    // const newAverageRating = calculateAverageRating(newReviewList);
+    
     // await updateDoc(businessRef, { rating: newAverageRating });
     console.log(ratedBusiness);
-    console.log('New Average Rating:', newAverageRating);
     setEditing(false);
     setSelectedBusiness(null);
     setReviewing(false);
@@ -130,7 +131,7 @@ function BusinessControl() {
   if (error) {
     currentlyVisibleState = <p>There was an error: {error}</p>
   } else if (reviewing) {
-    console.log("we are in the reviewing form now")
+    // console.log("we are in the reviewing form now")
     currentlyVisibleState = 
     <AddReviewForm
       business = {selectedBusiness}
@@ -145,7 +146,7 @@ function BusinessControl() {
     buttonText = "Return to Business List";
     buttonIcon = <KeyboardBackspaceIcon />;
   } else if (selectedBusiness != null) {
-    console.log(selectedBusiness);
+    // console.log(selectedBusiness);
     currentlyVisibleState = 
     <BusinessDetail
       business = {selectedBusiness}
@@ -161,7 +162,7 @@ function BusinessControl() {
     buttonText = "Return to Business List";
     buttonIcon = <KeyboardBackspaceIcon />;
   } else {
-    console.log(mainBusinessList);
+    // console.log(mainBusinessList);
     currentlyVisibleState = 
     <BusinessList 
       businessList={mainBusinessList}
