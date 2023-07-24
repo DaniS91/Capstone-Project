@@ -7,7 +7,7 @@ import BusinessDetail from "./BusinessDetail";
 import EditBusinessForm from "./EditBusinessForm";
 import AddReviewForm from "./AddReviewForm";
 import db from './../firebase.js';
-import { collection, addDoc, onSnapshot, doc, updateDoc, deleteDoc } from "firebase/firestore";
+import { collection, addDoc, onSnapshot, doc, updateDoc, deleteDoc, query, where, getDocs } from "firebase/firestore";
 // import Review from "./Review";
 // import ReviewList from "./ReviewList";
 
@@ -55,6 +55,7 @@ function BusinessControl() {
   }
 
   const handleAddingNewBusinessToList = async (newBusinessData) => {
+    // console.log(newBusinessData);
     await addDoc(collection(db, "businesses"), newBusinessData);
     // const newMainBusinessList = mainBusinessList.concat(newBusiness);
     // setMainBusinessList(newMainBusinessList);
@@ -82,7 +83,14 @@ function BusinessControl() {
     console.log("handleReviewClick function reached!")
     setReviewing(true);
   }
-
+  const updateAverageRating = async (reviews) => {
+    if (reviews.length === 0) {
+      return null;
+    }
+    const totalRating = reviews.reduce((accumulator, review) => accumulator + review.rating, 0);
+    const averageRating = totalRating/ reviews.length;
+    return Math.round(averageRating);
+  }
   const handleEditingBusinessInList = async (businessToEdit) => {
     const businessRef = doc(db, "businesses", businessToEdit.id);
     await updateDoc(businessRef, businessToEdit);
@@ -93,32 +101,13 @@ function BusinessControl() {
     setEditing(false);
     setSelectedBusiness(null);
   }
-  
+
   const handleAddingReview = async (review) => {
- 
-    // const newBusinessRating = review.rating;
     const newReviewList = selectedBusiness.reviewList.concat(review);
     const ratedBusiness = {...selectedBusiness};
-    // oh no....
-    // I'm going to have to make a new rating function to update the rating
-    // this just updates the rating to the latest rating
-    // I really should have seen this coming
-    // ratedBusiness.rating = newBusinessRating;
+   
     ratedBusiness.reviewList = newReviewList;
-    // this seems so contrived, I know there is a better way to do this
-    // setSelectedBusiness((prevSelectedBusiness) => {
-    //   const updatedBusiness = { ...prevSelectedBusiness};
     
-    //   updatedBusiness.reviewList = selectedBusiness.reviewList.concat(review);
-    //   updatedBusiness.rating = selectedBusiness.rating;
-    //   console.log(updatedBusiness);
-    //   console.log(updatedBusiness.reviewList);
-    //   const editedMainBusinessList = mainBusinessList
-    //                 .filter(business => business.id !== updatedBusiness.id)
-    //                 .concat(updatedBusiness);
-    // setMainBusinessList(editedMainBusinessList);
-    // })
-
     const businessRef = doc(db, "businesses", selectedBusiness.id);
     await updateDoc(businessRef, ratedBusiness);
     setEditing(false);
@@ -164,6 +153,7 @@ function BusinessControl() {
     buttonText = "Return to Business List";
     buttonIcon = <KeyboardBackspaceIcon />;
   } else {
+    console.log(mainBusinessList);
     currentlyVisibleState = 
     <BusinessList 
       businessList={mainBusinessList}
