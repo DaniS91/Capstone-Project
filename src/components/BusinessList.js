@@ -14,6 +14,7 @@ function BusinessList(props){
             state={business.state}
             zipcode={business.zipcode}
             url={business.url}
+            avgRating={business.avgRating}
             category={business.category}
             id={business.id}
             key={business.id}/>
