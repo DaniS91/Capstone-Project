@@ -83,21 +83,17 @@ function BusinessControl() {
     console.log("handleReviewClick function reached!")
     setReviewing(true);
   }
-  const updateAverageRating = async (reviews) => {
+  const calculateAverageRating = async (reviews) => {
     if (reviews.length === 0) {
       return null;
     }
     const totalRating = reviews.reduce((accumulator, review) => accumulator + review.rating, 0);
-    const averageRating = totalRating/ reviews.length;
-    return Math.round(averageRating);
+    const averageRating = (totalRating/ reviews.length).toFixed(0);
+    return averageRating;
   }
   const handleEditingBusinessInList = async (businessToEdit) => {
     const businessRef = doc(db, "businesses", businessToEdit.id);
     await updateDoc(businessRef, businessToEdit);
-    // const editedMainBusinessList = mainBusinessList
-    //                 .filter(business => business.id !== selectedBusiness.id)
-    //                 .concat(businessToEdit);
-    // setMainBusinessList(editedMainBusinessList);
     setEditing(false);
     setSelectedBusiness(null);
   }
@@ -105,11 +101,23 @@ function BusinessControl() {
   const handleAddingReview = async (review) => {
     const newReviewList = selectedBusiness.reviewList.concat(review);
     const ratedBusiness = {...selectedBusiness};
-   
+   // handle new review and update db
     ratedBusiness.reviewList = newReviewList;
-    
     const businessRef = doc(db, "businesses", selectedBusiness.id);
-    await updateDoc(businessRef, ratedBusiness);
+    await updateDoc(businessRef, {
+      reviewList: newReviewList,
+      rating: calculateAverageRating(newReviewList)
+    });
+    //update avg rating in business
+    // const reviewsQuery = query(collection(db, 'reviews'), where('businessId', '==', selectedBusiness.id));
+    // const querySnapshot = await getDocs(reviewsQuery);
+    // const reviews = querySnapshot.docs.map((doc) => doc.data());
+
+    const newAverageRating = calculateAverageRating(newReviewList);
+
+    // await updateDoc(businessRef, { rating: newAverageRating });
+    console.log(ratedBusiness);
+    console.log('New Average Rating:', newAverageRating);
     setEditing(false);
     setSelectedBusiness(null);
     setReviewing(false);
