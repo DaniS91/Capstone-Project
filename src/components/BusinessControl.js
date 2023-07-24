@@ -55,9 +55,11 @@ function BusinessControl() {
   const handleAddingNewBusinessToList = async (newBusinessData) => {
     const storageRef = ref(storage, `businessPhotos/${newBusinessData.name}-${Date.now()}`);
     if (newBusinessData.photo) {
-      await uploadBytes(storageRef, newBusinessData.photo)
+      await uploadBytes(storageRef, newBusinessData.photo);
+      const photoURL = await getDownloadURL(storageRef);
+      //change "photo" in newBusiness data to the url for later reference before adding to database
+      newBusinessData.photo = photoURL;
     }
-    
     await addDoc(collection(db, "businesses"), newBusinessData);
     setFormVisibleOnPage(false);
   }
