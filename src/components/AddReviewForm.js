@@ -40,7 +40,7 @@ function AddReviewForm (props) {
         <br></br>
         <Rating 
           name="rating"
-          precision="1"
+          precision={1}
           size="medium"
           />
         <br></br> 

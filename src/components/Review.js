@@ -9,7 +9,7 @@ function Review(props){
       <h2>{props.title}</h2>
       <Rating 
         value={props.rating}
-        readOnly="true"/>
+        readOnly={true}/>
       <p>{props.reviewText}</p>
     </React.Fragment>
   )

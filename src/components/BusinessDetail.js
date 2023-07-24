@@ -18,7 +18,7 @@ function BusinessDetail(props){
     <React.Fragment>
       <h1>{business.name}</h1>
       {business.avgRating !== null ? (
-          <Rating value={business.avgRating} readOnly="true"/>
+          <Rating value={business.avgRating} readOnly={true}/>
         ) : (<p>Not yet Rated</p>)}
       <p>{business.address}</p>
       <p>{business.city}, {business.state}  {business.zipcode}</p>

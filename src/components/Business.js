@@ -10,7 +10,7 @@ function Business(props){
       <div onClick = {() => props.whenBusinessClicked(props.id)}>
         <h2>{props.name}</h2>
         {props.avgRating !== null ? (
-          <Rating value={props.avgRating} readOnly="true"/>
+          <Rating value={props.avgRating} readOnly={true}/>
         ) : (<p>Not yet Rated</p>)}
         <h3>{props.category}</h3>
         <p>{props.city}, {props.state}</p>
