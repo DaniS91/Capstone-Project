@@ -9,6 +9,7 @@ import AccessibleIcon from '@mui/icons-material/Accessible';
 import NotAccessibleIcon from '@mui/icons-material/NotAccessible';
 import WcIcon from '@mui/icons-material/Wc';
 import HowToRegIcon from '@mui/icons-material/HowToReg';
+import { Rating } from "@mui/material";
 
 function BusinessDetail(props){
   const { business, onClickingDelete, onClickingEdit, onClickingReview } = props;
@@ -16,6 +17,9 @@ function BusinessDetail(props){
   return (
     <React.Fragment>
       <h1>{business.name}</h1>
+      {business.avgRating !== null ? (
+          <Rating value={business.avgRating} readOnly="true"/>
+        ) : (<p>Not yet Rated</p>)}
       <p>{business.address}</p>
       <p>{business.city}, {business.state}  {business.zipcode}</p>
       <p>{business.category}</p>
