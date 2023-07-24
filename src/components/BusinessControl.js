@@ -7,9 +7,7 @@ import BusinessDetail from "./BusinessDetail";
 import EditBusinessForm from "./EditBusinessForm";
 import AddReviewForm from "./AddReviewForm";
 import db from './../firebase.js';
-import { collection, addDoc, onSnapshot, doc, updateDoc, deleteDoc, query, where, getDocs } from "firebase/firestore";
-// import Review from "./Review";
-// import ReviewList from "./ReviewList";
+import { collection, addDoc, onSnapshot, doc, updateDoc, deleteDoc } from "firebase/firestore";
 
 import AddBusinessIcon from '@mui/icons-material/AddBusiness';
 import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
@@ -55,10 +53,7 @@ function BusinessControl() {
   }
 
   const handleAddingNewBusinessToList = async (newBusinessData) => {
-    // console.log(newBusinessData);
     await addDoc(collection(db, "businesses"), newBusinessData);
-    // const newMainBusinessList = mainBusinessList.concat(newBusiness);
-    // setMainBusinessList(newMainBusinessList);
     setFormVisibleOnPage(false);
   }
 
@@ -69,9 +64,6 @@ function BusinessControl() {
 
   const handleDeletingBusiness = async (id) => {
     await deleteDoc(doc(db, "businesses", id));
-
-    // const newMainBusinessList = mainBusinessList.filter(business => business.id !== id);
-    // setMainBusinessList(newMainBusinessList);
     setSelectedBusiness(null);
   }
   
@@ -103,22 +95,14 @@ function BusinessControl() {
   const handleAddingReview = async (review) => {
     const newReviewList = selectedBusiness.reviewList.concat(review);
     const ratedBusiness = {...selectedBusiness};
-   // handle new review and update db
     ratedBusiness.reviewList = newReviewList;
     const newAverageRating =  await calculateAverageRating(newReviewList);
-    // console.log(ratedBusiness);
-    console.log(newAverageRating);
     const businessRef = doc(db, "businesses", selectedBusiness.id);
-    // await updateDoc(businessRef, ratedBusiness);
+    
     await updateDoc(businessRef, {
       reviewList: newReviewList,
       avgRating: newAverageRating
     })
-  // handle updating average ratings using calculate averagerating
-    // const newAverageRating = calculateAverageRating(newReviewList);
-    
-    // await updateDoc(businessRef, { rating: newAverageRating });
-    console.log(ratedBusiness);
     setEditing(false);
     setSelectedBusiness(null);
     setReviewing(false);
@@ -131,7 +115,6 @@ function BusinessControl() {
   if (error) {
     currentlyVisibleState = <p>There was an error: {error}</p>
   } else if (reviewing) {
-    // console.log("we are in the reviewing form now")
     currentlyVisibleState = 
     <AddReviewForm
       business = {selectedBusiness}
@@ -146,7 +129,6 @@ function BusinessControl() {
     buttonText = "Return to Business List";
     buttonIcon = <KeyboardBackspaceIcon />;
   } else if (selectedBusiness != null) {
-    // console.log(selectedBusiness);
     currentlyVisibleState = 
     <BusinessDetail
       business = {selectedBusiness}
@@ -162,7 +144,6 @@ function BusinessControl() {
     buttonText = "Return to Business List";
     buttonIcon = <KeyboardBackspaceIcon />;
   } else {
-    // console.log(mainBusinessList);
     currentlyVisibleState = 
     <BusinessList 
       businessList={mainBusinessList}
