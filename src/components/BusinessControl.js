@@ -8,7 +8,7 @@ import EditBusinessForm from "./EditBusinessForm";
 import AddReviewForm from "./AddReviewForm";
 import db from './../firebase.js';
 import { collection, addDoc, onSnapshot, doc, updateDoc, deleteDoc } from "firebase/firestore";
-
+import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import AddBusinessIcon from '@mui/icons-material/AddBusiness';
 import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
 
@@ -53,6 +53,11 @@ function BusinessControl() {
   }
 
   const handleAddingNewBusinessToList = async (newBusinessData) => {
+    const storageRef = ref(storage, `businessPhotos/${newBusinessData.name}-${Date.now()}`);
+    if (newBusinessData.photo) {
+      await uploadBytes(storageRef, newBusinessData.photo)
+    }
+    
     await addDoc(collection(db, "businesses"), newBusinessData);
     setFormVisibleOnPage(false);
   }
