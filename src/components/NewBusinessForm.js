@@ -17,8 +17,9 @@ function NewBusinessForm(props){
       description: event.target.description.value,
       accessibility: event.target.accessibility.checked,
       restrooms: event.target.restrooms.checked,
+      // photo: event.target.file,
       reviewList: [],
-      rating: null,
+      avgRating: null,
     })
   
   }

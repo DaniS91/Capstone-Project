@@ -6,7 +6,7 @@ import BusinessList from "./BusinessList";
 import BusinessDetail from "./BusinessDetail";
 import EditBusinessForm from "./EditBusinessForm";
 import AddReviewForm from "./AddReviewForm";
-import db from './../firebase.js';
+import { db, storage } from './../firebase.js';
 import { collection, addDoc, onSnapshot, doc, updateDoc, deleteDoc } from "firebase/firestore";
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import AddBusinessIcon from '@mui/icons-material/AddBusiness';
@@ -53,13 +53,16 @@ function BusinessControl() {
   }
 
   const handleAddingNewBusinessToList = async (newBusinessData) => {
-    const storageRef = ref(storage, `businessPhotos/${newBusinessData.name}-${Date.now()}`);
-    if (newBusinessData.photo) {
-      await uploadBytes(storageRef, newBusinessData.photo);
-      const photoURL = await getDownloadURL(storageRef);
-      //change "photo" in newBusiness data to the url for later reference before adding to database
-      newBusinessData.photo = photoURL;
-    }
+    console.log(newBusinessData);
+    // const storageRef = ref(storage, `businessPhotos/${newBusinessData.name}-${Date.now()}`);
+    // if (newBusinessData.photo) {
+    //   console.log("photo handling if statement reached")
+    //   await uploadBytes(storageRef, newBusinessData.photo);
+    //   const photoURL = await getDownloadURL(storageRef);
+    //   //change "photo" in newBusiness data to the url for later reference before adding to database
+    //   newBusinessData.photo = photoURL;
+    //   console.log(newBusinessData.photo);
+    // }
     await addDoc(collection(db, "businesses"), newBusinessData);
     setFormVisibleOnPage(false);
   }

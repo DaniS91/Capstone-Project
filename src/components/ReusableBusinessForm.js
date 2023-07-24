@@ -68,6 +68,12 @@ const stateAbbreviations = [ 'AL', 'AK', 'AS', 'AZ', 'AR', 'CA', 'CO', 'CT', 'DE
           name='description'
           label='Short description' />
         <br></br>
+        {/* <label>Add Photo of Business: <input
+          type='file'
+          name='photo'
+          accept="image/*"
+          multiple={false} /></label>
+          <br></br> */}
         <label>
         Wheelchair-accessible: <input type="checkbox" name="accessibility" defaultChecked={false} />
         </label>
@@ -89,7 +95,7 @@ const stateAbbreviations = [ 'AL', 'AK', 'AS', 'AZ', 'AR', 'CA', 'CO', 'CT', 'DE
 
 ReusableBusinessForm.propTypes = {
   formSubmissionHandler: PropTypes.func,
-  buttonText: PropTypes.string
+  buttonText: PropTypes.string,
 };
 
 export default ReusableBusinessForm;
