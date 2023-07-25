@@ -1,14 +1,18 @@
 import React from "react";
 import Header from "./Header";
 import BusinessControl from "./BusinessControl";
-
+import UserAccount from "./Auth/UserAccount";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 function App(){
   return ( 
-    <React.Fragment>
+    <Router>
       <Header />
-      <BusinessControl />
-    </React.Fragment>
+      <Routes>
+        <Route path="/Accounts" element={<UserAccount />} />
+        <Route path="/" element={<BusinessControl />} />
+      </Routes>
+    </Router>
   );
 }
 
