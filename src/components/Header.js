@@ -4,6 +4,7 @@ import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
+import { Link } from "react-router-dom";
 import TransFlag2 from "./../img/transflag2.png"
 
 
@@ -18,10 +19,16 @@ function Header(){
           <img src={TransFlag2}
             height="30px"
             alt="transgender flag"></img>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+          <Link to="/">
+            <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             TransGuide
-          </Typography>
-          <Button color="inherit">Login</Button>
+            </Typography>
+          </Link>
+          <Link to="/Accounts">
+            <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+            Account
+            </Typography>
+          </Link>
         </Toolbar>
       </AppBar>
     </Box>
