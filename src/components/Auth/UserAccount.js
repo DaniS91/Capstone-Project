@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import SignUp from "./SignUp";
+import SignIn from "./SignIn";
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "firebase/auth";
 
 function UserAccount(){  
   const [signUpSuccess, setSignUpSuccess] = useState(null);
   const [signInSuccess, setSignInSuccess] = useState(null);
+  const [signOutSuccess, setSignOutSuccess] = useState(null);
 
   function doSignUp(event) {
     event.preventDefault();
@@ -30,6 +32,15 @@ function UserAccount(){
       .catch((error) => {
       setSignInSuccess(`There was an error signing in: ${error.message}!`)
     });
+  }
+
+  function doSignOut() {
+    signOut(auth)
+      .then(function() {
+        setSignOutSuccess("You have successfully signed out!");
+      }).catch(function(error) {
+        setSignOutSuccess(`There was an error signing out: ${error.message}!`);
+      });
   }
 
   return (
