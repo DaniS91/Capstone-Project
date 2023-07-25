@@ -6,7 +6,8 @@ import BusinessList from "./BusinessList";
 import BusinessDetail from "./BusinessDetail";
 import EditBusinessForm from "./EditBusinessForm";
 import AddReviewForm from "./AddReviewForm";
-import { db, storage } from './../firebase.js';
+
+import { db, storage, auth } from './../firebase.js';
 import { collection, addDoc, onSnapshot, doc, updateDoc, deleteDoc } from "firebase/firestore";
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import AddBusinessIcon from '@mui/icons-material/AddBusiness';
@@ -118,61 +119,69 @@ function BusinessControl() {
     setReviewing(false);
   }
 
-  let currentlyVisibleState = null;
-  let buttonText = null;
-  let buttonIcon = null;
-
-  if (error) {
-    currentlyVisibleState = <p>There was an error: {error}</p>
-  } else if (reviewing) {
-    currentlyVisibleState = 
-    <AddReviewForm
-      business = {selectedBusiness}
-      onReviewBusiness = {handleAddingReview} />
-    buttonText = "Back to Business List";
-    buttonIcon = <KeyboardBackspaceIcon />;
-  } else if (editing) {
-    currentlyVisibleState = 
-    <EditBusinessForm 
-      business = {selectedBusiness}
-      onEditBusiness = {handleEditingBusinessInList} />
-    buttonText = "Return to Business List";
-    buttonIcon = <KeyboardBackspaceIcon />;
-  } else if (selectedBusiness != null) {
-    currentlyVisibleState = 
-    <BusinessDetail
-      business = {selectedBusiness}
-      onClickingDelete = {handleDeletingBusiness}
-      onClickingEdit = {handleEditClick}
-      onClickingReview={handleReviewClick} />
-    buttonText = "Return to Business List";
-    buttonIcon = <KeyboardBackspaceIcon />;
-  } else if(formVisibleOnPage) {
-    currentlyVisibleState = 
-    <NewBusinessForm
-      onNewBusinessCreation={handleAddingNewBusinessToList} />
-    buttonText = "Return to Business List";
-    buttonIcon = <KeyboardBackspaceIcon />;
-  } else {
-    currentlyVisibleState = 
-    <BusinessList 
-      businessList={mainBusinessList}
-      onBusinessSelection={handleChangingSelectedBusiness} />
-    buttonText = "Add Business";
-    buttonIcon = <AddBusinessIcon />;
+  if (auth.currentUser == null) {
+    return (
+      <React.Fragment>
+        <h1>You must be signed in to access this website</h1>
+      </React.Fragment>
+    )
+  } else if (auth.currentUser != null) {
+    let currentlyVisibleState = null;
+    let buttonText = null;
+    let buttonIcon = null;
+  
+    if (error) {
+      currentlyVisibleState = <p>There was an error: {error}</p>
+    } else if (reviewing) {
+      currentlyVisibleState = 
+      <AddReviewForm
+        business = {selectedBusiness}
+        onReviewBusiness = {handleAddingReview} />
+      buttonText = "Back to Business List";
+      buttonIcon = <KeyboardBackspaceIcon />;
+    } else if (editing) {
+      currentlyVisibleState = 
+      <EditBusinessForm 
+        business = {selectedBusiness}
+        onEditBusiness = {handleEditingBusinessInList} />
+      buttonText = "Return to Business List";
+      buttonIcon = <KeyboardBackspaceIcon />;
+    } else if (selectedBusiness != null) {
+      currentlyVisibleState = 
+      <BusinessDetail
+        business = {selectedBusiness}
+        onClickingDelete = {handleDeletingBusiness}
+        onClickingEdit = {handleEditClick}
+        onClickingReview={handleReviewClick} />
+      buttonText = "Return to Business List";
+      buttonIcon = <KeyboardBackspaceIcon />;
+    } else if(formVisibleOnPage) {
+      currentlyVisibleState = 
+      <NewBusinessForm
+        onNewBusinessCreation={handleAddingNewBusinessToList} />
+      buttonText = "Return to Business List";
+      buttonIcon = <KeyboardBackspaceIcon />;
+    } else {
+      currentlyVisibleState = 
+      <BusinessList 
+        businessList={mainBusinessList}
+        onBusinessSelection={handleChangingSelectedBusiness} />
+      buttonText = "Add Business";
+      buttonIcon = <AddBusinessIcon />;
+    }
+    return(
+      <React.Fragment>
+        {currentlyVisibleState}
+        
+        {error? null: <Button
+          color="secondary"
+          size="medium" 
+          variant="outlined"
+          onClick={handleClick}
+          startIcon={buttonIcon}>{buttonText}</Button>}
+    </React.Fragment>
+    )
   }
-  return(
-    <React.Fragment>
-      {currentlyVisibleState}
-      
-      {error? null: <Button
-        color="secondary"
-        size="medium" 
-        variant="outlined"
-        onClick={handleClick}
-        startIcon={buttonIcon}>{buttonText}</Button>}
-  </React.Fragment>
-  )
 }
 
 export default BusinessControl;
