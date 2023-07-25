@@ -7,6 +7,12 @@ function UserAccount(){
   const [signUpSuccess, setSignUpSuccess] = useState(null);
   const [signInSuccess, setSignInSuccess] = useState(null);
   const [signOutSuccess, setSignOutSuccess] = useState(null);
+  // const [signingUp, setSigningUp] = useState(true);
+
+  // we will display signUp component as a default, 
+  // gigning up is true as default
+  // sign in button will switch signingUp to false with onclick handlesigningin funct
+  // sign out button will simply signout
 
   function doSignUp(event) {
     event.preventDefault();
