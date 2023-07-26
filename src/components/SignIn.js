@@ -26,6 +26,7 @@ function SignIn(){
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
       setSignInSuccess(`You've successfully signed in as ${userCredential.user.email}!`)
+      window.location.reload(false);
     })
       .catch((error) => {
       setSignInSuccess(`There was an error signing in: ${error.message}!`)

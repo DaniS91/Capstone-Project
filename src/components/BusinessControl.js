@@ -9,6 +9,7 @@ import AddReviewForm from "./AddReviewForm";
 import SplashPage from "./SplashPage";
 
 import { db, storage, auth } from './../firebase.js';
+import { signOut } from "firebase/auth";
 import { collection, addDoc, onSnapshot, doc, updateDoc, deleteDoc } from "firebase/firestore";
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import AddBusinessIcon from '@mui/icons-material/AddBusiness';
@@ -120,6 +121,16 @@ function BusinessControl() {
     setReviewing(false);
   }
 
+  function doSignOut() {
+    signOut(auth)
+      .then(function() {
+        console.log("sign out success");
+        window.location.reload(false);
+      }).catch(function(error) {
+        console.log(`There was an error signing out: ${error.message}!`);
+      });
+  }
+
   if (auth.currentUser == null) {
     return (
       <React.Fragment>
@@ -180,6 +191,8 @@ function BusinessControl() {
           variant="outlined"
           onClick={handleClick}
           startIcon={buttonIcon}>{buttonText}</Button>}
+        <br></br>
+        {auth.currentUser? <Button onClick={doSignOut}>Sign Out</Button>: null}
     </React.Fragment>
     )
   }
