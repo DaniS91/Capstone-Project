@@ -20,14 +20,9 @@ function Header(){
           <img src={TransFlag2}
             height="30px"
             alt="transgender flag"></img>
-          <Link to="/">
+          <Link to="/" style={{textDecoration: "none"}}>
             <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             TransGuide
-            </Typography>
-          </Link>
-          <Link to="/SignIn">
-            <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            Sign In
             </Typography>
           </Link>
         </Toolbar>
