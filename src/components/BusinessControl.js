@@ -6,6 +6,7 @@ import BusinessList from "./BusinessList";
 import BusinessDetail from "./BusinessDetail";
 import EditBusinessForm from "./EditBusinessForm";
 import AddReviewForm from "./AddReviewForm";
+import SplashPage from "./SplashPage";
 
 import { db, storage, auth } from './../firebase.js';
 import { collection, addDoc, onSnapshot, doc, updateDoc, deleteDoc } from "firebase/firestore";
@@ -122,7 +123,7 @@ function BusinessControl() {
   if (auth.currentUser == null) {
     return (
       <React.Fragment>
-        <h1>You must be signed in to access this website</h1>
+        <SplashPage />
       </React.Fragment>
     )
   } else if (auth.currentUser != null) {
