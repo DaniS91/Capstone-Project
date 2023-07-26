@@ -1,7 +1,8 @@
 import React from "react";
 import Header from "./Header";
 import BusinessControl from "./BusinessControl";
-import UserAccount from "./Auth/UserAccount";
+import SignUp from "./SignUp";
+import SignIn from "./SignIn";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 function App(){
