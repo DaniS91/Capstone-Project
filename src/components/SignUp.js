@@ -20,10 +20,11 @@ function SignUp(){
 
   function doSignUp(event) {
     event.preventDefault();
-    console.log(email);
-    console.log(password);
+    
     const email = event.target.email.value;
     const password = event.target.password.value;
+    console.log(email);
+    console.log(password);
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         setSignUpSuccess(`You've successfully signed up, ${userCredential.user.email}!`)
@@ -57,21 +58,17 @@ function SignUp(){
           <Box component="form" noValidate onSubmit={doSignUp} sx={{ mt: 3 }}>
             <Grid container spacing={2}>
               <Grid item xs={12}>
-                {/* <TextField
+                <TextField
                   required
                   fullWidth
                   id="email"
                   label="Email Address"
                   name="email"
                   autoComplete="email"
-                /> */}
-                <input
-                  type='text'
-                  name='email'
-                  placeholder='email' />
+                />
               </Grid>
               <Grid item xs={12}>
-                {/* <TextField
+                <TextField
                   required
                   fullWidth
                   name="password"
@@ -79,11 +76,7 @@ function SignUp(){
                   type="password"
                   id="password"
                   autoComplete="new-password"
-                /> */}
-                <input
-                  type='password'
-                  name='password'
-                  placeholder='Password' />
+                />
               </Grid>
             </Grid>
             <Button
