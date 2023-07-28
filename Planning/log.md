@@ -48,7 +48,7 @@
 
 ### Thursday 7/27/23
 
-* 5:20 pm - x:xx pm - watching video for using firebase storage in react app, trying to solve my storage issue
+* 5:20 pm - 7:05 pm - watching video for using firebase storage in react app, trying to solve my storage issue
 
   [Project repo]: https://github.com/DaniS91/Capstone-Project
   [Radar Docs]: https://radar.com/documentation/
