@@ -9,8 +9,10 @@ import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 
 function NewBusinessForm(props){
 
+  const [stateValue, setStateValue] = useState("")
   const handleNewBusinessFormSubmission = async (event) => {
     event.preventDefault();
+    setStateValue(event.target.state.value);
     const photoFile = event.target.photo.files;
     const imageName = v4();
     const imageRef = ref(storage, `images/${imageName}`); 
@@ -22,7 +24,7 @@ function NewBusinessForm(props){
         name: event.target.name.value,
         address: event.target.address.value,
         city: event.target.city.value,
-        state: event.target.state.value,
+        state: stateValue,
         zipcode: parseInt(event.target.zipcode.value),
         url: event.target.url.value,
         category: event.target.category.value,
@@ -38,7 +40,7 @@ function NewBusinessForm(props){
         name: event.target.name.value,
         address: event.target.address.value,
         city: event.target.city.value,
-        state: event.target.state.value,
+        state: stateValue,
         zipcode: parseInt(event.target.zipcode.value),
         url: event.target.url.value,
         category: event.target.category.value,
@@ -55,7 +57,9 @@ function NewBusinessForm(props){
     <React.Fragment>
       <ReusableBusinessForm 
         formSubmissionHandler={handleNewBusinessFormSubmission}
-        buttonText="Submit" />
+        buttonText="Submit"
+        stateValue={stateValue}
+        setStateValue={setStateValue} />
     </React.Fragment>
   );
 }

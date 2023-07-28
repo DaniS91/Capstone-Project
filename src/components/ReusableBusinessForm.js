@@ -20,7 +20,7 @@ const stateAbbreviations = [ 'AL', 'AK', 'AS', 'AZ', 'AR', 'CA', 'CO', 'CT', 'DE
           p: 2,
           display: 'grid'
         }}>
-      {/* <form onSubmit={props.formSubmissionHandler}> */}
+      
         <TextField
           type='text'
           name='name'
@@ -40,6 +40,9 @@ const stateAbbreviations = [ 'AL', 'AK', 'AS', 'AZ', 'AR', 'CA', 'CO', 'CT', 'DE
           select 
           label="State:" 
           name="state"
+          id="state-select"
+          value={props.stateValue}
+          onChange={(e)=> props.setStateValue(e.target.value)}
           helperText="Please select a state">
             {stateAbbreviations.map((option) => (
             <MenuItem key={option} value={option}>
@@ -68,12 +71,11 @@ const stateAbbreviations = [ 'AL', 'AK', 'AS', 'AZ', 'AR', 'CA', 'CO', 'CT', 'DE
           name='description'
           label='Short description' />
         <br></br>
-        {/* <label>Add Photo of Business: <input
+        <label>Add Photo of Business: <input
           type='file'
           name='photo'
-          accept="image/*"
-          multiple={false} /></label>
-          <br></br> */}
+          accept="image/*" /></label>
+          <br></br>
         <label>
         Wheelchair-accessible: <input type="checkbox" name="accessibility" defaultChecked={false} />
         </label>
@@ -86,7 +88,8 @@ const stateAbbreviations = [ 'AL', 'AK', 'AS', 'AZ', 'AR', 'CA', 'CO', 'CT', 'DE
           type='submit'
           color="success"
           size="small" 
-          variant="contained">{props.buttonText}
+          variant="contained"
+          disableRipple>{props.buttonText}
           </Button>
       </Box>
     </React.Fragment>
