@@ -190,7 +190,8 @@ function BusinessControl() {
           size="medium" 
           variant="outlined"
           onClick={handleClick}
-          startIcon={buttonIcon}>{buttonText}</Button>}
+          startIcon={buttonIcon}
+          disableRipple>{buttonText}</Button>}
         <br></br>
         {auth.currentUser? <Button onClick={doSignOut}>Sign Out</Button>: null}
     </React.Fragment>

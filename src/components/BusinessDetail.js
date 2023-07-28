@@ -13,13 +13,15 @@ import { Rating } from "@mui/material";
 
 function BusinessDetail(props){
   const { business, onClickingDelete, onClickingEdit, onClickingReview } = props;
-  
+  console.log(business.photo);
   return (
     <React.Fragment>
       <h1>{business.name}</h1>
       {business.avgRating !== null ? (
           <Rating value={business.avgRating} readOnly={true}/>
         ) : (<p>Not yet Rated</p>)}
+      {/* <img src={business.photo} alt="User uploaded photo for business" width="200"></img> */}
+      {business.photo && <img src={business.photo} alt="user uploaded image of business" width="200"/>}
       <p>{business.address}</p>
       <p>{business.city}, {business.state}  {business.zipcode}</p>
       <p>{business.category}</p>
@@ -38,21 +40,21 @@ function BusinessDetail(props){
         size="small" 
         variant="contained"
         startIcon={<RateReviewIcon />}
-        >Add Review</Button>
+        disableRipple>Add Review</Button>
       <Button 
         onClick={()=> onClickingEdit(business.id)}
         color="info"
         size="small" 
         variant="contained"
         startIcon={<EditIcon />}
-        >Edit</Button>
+        disableRipple>Edit</Button>
       <Button 
         onClick={()=> onClickingDelete(business.id)}
         color="error"
         size="small"
         variant="contained"
         startIcon={<DeleteForeverIcon />}
-        >Delete</Button>
+        disableRipple>Delete</Button>
         <hr></hr>
     </React.Fragment>
   );
