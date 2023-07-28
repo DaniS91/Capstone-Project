@@ -46,6 +46,10 @@
 * 3:00 pm - 4:03 pm - researching using [firebase storage][firebase storage] for user file uploads
 
 
+### Thursday 7/27/23
+
+* 5:20 pm - x:xx pm - watching video for using firebase storage in react app, trying to solve my storage issue
+
   [Project repo]: https://github.com/DaniS91/Capstone-Project
   [Radar Docs]: https://radar.com/documentation/
   [Address V]: https://extensions.dev/extensions/googlemapsplatform/firestore-validate-address
