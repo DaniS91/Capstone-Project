@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Button, Stack } from '@mui/material';
+import { Button, Stack, AppBar, Toolbar } from '@mui/material';
 
 import NewBusinessForm from "./NewBusinessForm";
 import BusinessList from "./BusinessList";
@@ -189,11 +189,13 @@ function BusinessControl() {
               </Button>}
         </Stack>
         {currentlyVisibleState}
-        <Stack
+        {/* <Stack
           direction="row"
           justifyContent="flex-end"
           alignItems="center"
-          spacing={0}>
+          spacing={0}
+          position="fixed" 
+          sx={{ top: 'auto', bottom: 0 }}>
             {auth.currentUser? <Button 
               onClick={doSignOut}
               color="info"
@@ -201,10 +203,28 @@ function BusinessControl() {
               variant="contained"
               startIcon={<LogoutIcon />}
             >Sign Out</Button>: null}
-        </Stack>
+        </Stack> */}
+        <AppBar position="sticky" color="primary" sx={{ top: 'auto', bottom: 0 }}>
+            <Stack
+              direction="row"
+              justifyContent="flex-end"
+              alignItems="center"
+              spacing={2}
+              sx={{margin: '10px'}}>
+                {auth.currentUser? <Button 
+                  onClick={doSignOut}
+                  color="info"
+                  size="medium" 
+                  variant="contained"
+                  startIcon={<LogoutIcon />}
+                >Sign Out</Button>: null}
+            </Stack>
+        </AppBar>
     </React.Fragment>
     )
   }
 }
 
 export default BusinessControl;
+
+
