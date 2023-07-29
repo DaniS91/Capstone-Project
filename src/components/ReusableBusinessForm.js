@@ -79,7 +79,7 @@ const stateAbbreviations = [ 'AL', 'AK', 'AS', 'AZ', 'AR', 'CA', 'CO', 'CT', 'DE
         
         <TextField 
           type='text'
-          name='photoFromWeb'
+          name='userPhotoURL'
           label='OR add photo url'
           size = "small" />
         <br></br>

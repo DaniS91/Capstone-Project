@@ -47,7 +47,7 @@ function NewBusinessForm(props){
         description: event.target.description.value,
         accessibility: event.target.accessibility.checked,
         restrooms: event.target.restrooms.checked,
-        photo: null,
+        photo: event.target.userPhotoURL.value,
         reviewList: [],
         avgRating: null,
       });
