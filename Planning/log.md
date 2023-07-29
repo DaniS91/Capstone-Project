@@ -50,6 +50,11 @@
 
 * 5:20 pm - 7:05 pm - watching video for using firebase storage in react app, trying to solve my storage issue
 
+### Saturday 7/29/23
+
+* 9:58 am - x:xx am - trying to figure out how to enable cors/cors config for project from firebase documentation in order to successfully upload and use user photos
+
+
   [Project repo]: https://github.com/DaniS91/Capstone-Project
   [Radar Docs]: https://radar.com/documentation/
   [Address V]: https://extensions.dev/extensions/googlemapsplatform/firestore-validate-address
