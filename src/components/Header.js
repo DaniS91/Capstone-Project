@@ -7,6 +7,7 @@ import Typography from '@mui/material/Typography';
 
 import { Link } from "react-router-dom";
 import TransFlag2 from "./../img/transflag2.png"
+import TransFlag3 from "./../img/transflag3.png"
 
 
 function Header(){
@@ -17,11 +18,12 @@ function Header(){
         position="static"
         >
         <Toolbar>
-          <img src={TransFlag2}
+          <img src={TransFlag3}
             height="30px"
-            alt="transgender flag"></img>
+            alt="transgender flag"
+            style={{margin:'10px'}}></img>
           <Link to="/" style={{textDecoration: "none"}}>
-            <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+            <Typography variant="h6" component="div" sx={{ flexGrow: 1, color: "whitesmoke" }}>
             TransGuide
             </Typography>
           </Link>
