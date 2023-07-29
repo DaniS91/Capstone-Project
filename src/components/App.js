@@ -37,7 +37,6 @@ function App(){
     components: {
       MuiButtonBase: {
         defaultProps: {
-          margin: '10px',
           disableRipple: true,
         },
       },
