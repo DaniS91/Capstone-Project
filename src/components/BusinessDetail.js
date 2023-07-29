@@ -20,7 +20,7 @@ function BusinessDetail(props){
       {business.avgRating !== null ? (
           <Rating value={business.avgRating} readOnly={true}/>
         ) : (<p>Not yet Rated</p>)}
-      {/* <img src={business.photo} alt="User uploaded photo for business" width="200"></img> */}
+      <img src={business.photo} alt="User uploaded photo for business" width="200"></img>
       {business.photo && <img src={business.photo} alt="user uploaded image of business" width="200"/>}
       <p>{business.address}</p>
       <p>{business.city}, {business.state}  {business.zipcode}</p>
