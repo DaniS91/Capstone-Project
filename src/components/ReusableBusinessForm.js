@@ -1,9 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import Button from '@mui/material/Button';
-import Box from '@mui/material/Button';
-import TextField from '@mui/material/TextField';
-import MenuItem from '@mui/material/MenuItem';
+import { Button, Box, TextField, MenuItem } from '@mui/material/';
 
 function ReusableBusinessForm(props) {
 
@@ -88,8 +85,6 @@ const stateAbbreviations = [ 'AL', 'AK', 'AS', 'AZ', 'AR', 'CA', 'CO', 'CT', 'DE
           <label>Wheelchair-accessible: </label><input type="checkbox" name="accessibility" defaultChecked={false} />
           <br></br>
           <label>Gender-neutral restroom available: </label><input type="checkbox" name="restrooms" defaultChecked={false} />
-        
-          <br></br>
         </Box>
         <Button 
           type='submit'
