@@ -76,14 +76,21 @@ const stateAbbreviations = [ 'AL', 'AK', 'AS', 'AZ', 'AR', 'CA', 'CO', 'CT', 'DE
           name='photo'
           accept="image/*" /></label>
           <br></br>
-        <label>
-        Wheelchair-accessible: <input type="checkbox" name="accessibility" defaultChecked={false} />
-        </label>
+        
+        <TextField 
+          type='text'
+          name='photoFromWeb'
+          label='OR add photo url'
+          size = "small" />
         <br></br>
-        <label>
-        Gender-neutral restroom available: <input type="checkbox" name="restrooms" defaultChecked={false} />
-        </label>
-        <br></br>
+        
+        <Box>
+          <label>Wheelchair-accessible: </label><input type="checkbox" name="accessibility" defaultChecked={false} />
+          <br></br>
+          <label>Gender-neutral restroom available: </label><input type="checkbox" name="restrooms" defaultChecked={false} />
+        
+          <br></br>
+        </Box>
         <Button 
           type='submit'
           color="success"
