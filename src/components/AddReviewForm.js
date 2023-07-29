@@ -52,8 +52,9 @@ function AddReviewForm (props) {
         <br></br>
         <Button type='submit'
           color="success"
-          size="small" 
-          variant="contained">Submit</Button>
+          size="small"
+          variant="contained"
+          disableRipple>Submit</Button>
       </Box>
     </React.Fragment>
   )
