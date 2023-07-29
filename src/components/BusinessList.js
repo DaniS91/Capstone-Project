@@ -1,12 +1,14 @@
 import React from "react";
 import PropTypes from "prop-types";
 import Business from "./Business";
-import { Box } from "@mui/material";
-
+import { Box, Stack } from "@mui/material";
 function BusinessList(props){
   return(
     <React.Fragment>
-      
+      <Stack 
+        direction="column"
+        spacing={2}
+        sx={{margin: '10px'}}>
         {props.businessList.map((business) =>
           <Business
             whenBusinessClicked = { props.onBusinessSelection }
@@ -21,7 +23,7 @@ function BusinessList(props){
             id={business.id}
             key={business.id}/>
         )}
-        
+        </Stack>
       </React.Fragment>
   );
 }
