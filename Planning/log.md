@@ -52,7 +52,7 @@
 
 ### Saturday 7/29/23
 
-* 9:58 am - x:xx am - trying to figure out how to enable cors/cors config for project from firebase documentation in order to successfully upload and use user photos
+* 9:58 am - 11:05 am - trying to figure out how to enable cors/cors config for project from firebase documentation in order to successfully upload and use user photos
 
 
   [Project repo]: https://github.com/DaniS91/Capstone-Project
