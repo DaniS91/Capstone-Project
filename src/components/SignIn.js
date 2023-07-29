@@ -79,7 +79,9 @@ function SignIn(){
               type="submit"
               fullWidth
               variant="contained"
-              sx={{ mt: 3, mb: 2 }}>Sign In</Button>
+              sx={{ mt: 3, mb: 2 }}
+              disableRipple
+              >Sign In</Button>
             <Grid container>
               <Grid item>
                 <Link to="/SignUp">

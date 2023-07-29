@@ -84,7 +84,7 @@ function SignUp(){
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
-            >
+              disableRipple>
               Sign Up
             </Button>
             <Grid container justifyContent="flex-end">
