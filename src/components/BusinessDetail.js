@@ -8,28 +8,32 @@ import AccessibleIcon from '@mui/icons-material/Accessible';
 import NotAccessibleIcon from '@mui/icons-material/NotAccessible';
 import WcIcon from '@mui/icons-material/Wc';
 import HowToRegIcon from '@mui/icons-material/HowToReg';
-import { Button, Rating, Stack } from "@mui/material";
+import { Button, Rating, Stack, Box } from "@mui/material";
 
 function BusinessDetail(props){
   const { business, onClickingDelete, onClickingEdit, onClickingReview } = props;
   console.log(business.photo);
   return (
     <React.Fragment>
-      <h1>{business.name}</h1>
-      {business.avgRating !== null ? (
-          <Rating value={business.avgRating} readOnly={true}/>
-        ) : (<p>Not yet Rated</p>)}
-      {/* {business.photo && <img src={business.photo} alt="user uploaded image of business" width="200"/>} */}
-      <p>{business.address}</p>
-      <p>{business.city}, {business.state}  {business.zipcode}</p>
-      <p>{business.category}</p>
-      <a href={business.url}>Website</a>
-      <p>{business.description}</p>
-      
-      <p>{business.accessibility ? <AccessibleIcon fontSize="inherit"/> : <NotAccessibleIcon fontSize="inherit"/>}Wheelchair Accessible: {business.accessibility ? "Yes" : "No"}</p>
-      <p>{business.restrooms ? <HowToRegIcon fontSize="inherit"/> : <WcIcon fontSize="inherit"/>}Gender-Neutral Restrooms: {business.restrooms ? "Yes" : "No"}</p>
-      <ReviewList 
-        reviewList={business.reviewList}/>
+      <Box sx={{margin: '20px'}}>
+        <Box>
+        <h1>{business.name}</h1>
+        {business.avgRating !== null ? (
+            <Rating value={business.avgRating} readOnly={true}/>
+          ) : (<p>Not yet Rated</p>)}
+        {/* {business.photo && <img src={business.photo} alt="user uploaded image of business" width="200"/>} */}
+        <p>{business.address}</p>
+        <p>{business.city}, {business.state}  {business.zipcode}</p>
+        <p>{business.category}</p>
+        <a href={business.url}>Website</a>
+        <p>{business.description}</p>
+        
+        <p>{business.accessibility ? <AccessibleIcon fontSize="inherit"/> : <NotAccessibleIcon fontSize="inherit"/>}Wheelchair Accessible: {business.accessibility ? "Yes" : "No"}</p>
+        <p>{business.restrooms ? <HowToRegIcon fontSize="inherit"/> : <WcIcon fontSize="inherit"/>}Gender-Neutral Restrooms: {business.restrooms ? "Yes" : "No"}</p>
+        </Box>
+        <ReviewList 
+          reviewList={business.reviewList}/>
+      </Box>
       <Stack
           direction="row"
           justifyContent="flex-start"
