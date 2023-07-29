@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import Button from '@mui/material/Button';
+import { Button, Stack } from '@mui/material';
 
 import NewBusinessForm from "./NewBusinessForm";
 import BusinessList from "./BusinessList";
@@ -7,13 +7,13 @@ import BusinessDetail from "./BusinessDetail";
 import EditBusinessForm from "./EditBusinessForm";
 import AddReviewForm from "./AddReviewForm";
 import SplashPage from "./SplashPage";
-
-import { db, storage, auth } from './../firebase.js';
+import { db, auth } from './../firebase.js';
 import { signOut } from "firebase/auth";
 import { collection, addDoc, onSnapshot, doc, updateDoc, deleteDoc } from "firebase/firestore";
-import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import AddBusinessIcon from '@mui/icons-material/AddBusiness';
 import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
+import LogoutIcon from '@mui/icons-material/Logout';
+
 
 function BusinessControl() {
 
@@ -56,16 +56,6 @@ function BusinessControl() {
   }
 
   const handleAddingNewBusinessToList = async (newBusinessData) => {
-    console.log(newBusinessData);
-    // const storageRef = ref(storage, `businessPhotos/${newBusinessData.name}-${Date.now()}`);
-    // if (newBusinessData.photo) {
-    //   console.log("photo handling if statement reached")
-    //   await uploadBytes(storageRef, newBusinessData.photo);
-    //   const photoURL = await getDownloadURL(storageRef);
-    //   //change "photo" in newBusiness data to the url for later reference before adding to database
-    //   newBusinessData.photo = photoURL;
-    //   console.log(newBusinessData.photo);
-    // }
     await addDoc(collection(db, "businesses"), newBusinessData);
     setFormVisibleOnPage(false);
   }
@@ -183,17 +173,35 @@ function BusinessControl() {
     }
     return(
       <React.Fragment>
+        <Stack
+          direction="row"
+          justifyContent="flex-start"
+          alignItems="center"
+          spacing={0}
+          sx={{margin: '20px'}}>
+            {error? null: <Button
+              color="success"
+              size="medium" 
+              variant="contained"
+              onClick={handleClick}
+              startIcon={buttonIcon}
+              disableRipple>{buttonText}
+              </Button>}
+        </Stack>
         {currentlyVisibleState}
-        
-        {error? null: <Button
-          color="secondary"
-          size="medium" 
-          variant="outlined"
-          onClick={handleClick}
-          startIcon={buttonIcon}
-          disableRipple>{buttonText}</Button>}
-        <br></br>
-        {auth.currentUser? <Button onClick={doSignOut}>Sign Out</Button>: null}
+        <Stack
+          direction="row"
+          justifyContent="flex-end"
+          alignItems="center"
+          spacing={0}>
+            {auth.currentUser? <Button 
+              onClick={doSignOut}
+              color="info"
+              size="medium" 
+              variant="contained"
+              startIcon={<LogoutIcon />}
+            >Sign Out</Button>: null}
+        </Stack>
     </React.Fragment>
     )
   }
