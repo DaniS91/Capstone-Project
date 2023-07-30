@@ -3,20 +3,31 @@
 ### By Dani Steely
 <hr>
 
-#### [Epicodus][Epicodus] capstone project completed for C# and React Part-Time [coursework][coursework]. TransGuide will be a mobile-friendly website that allows a user to make an anonymous account and create reviews of businesses or medical establishments in terms of their trans-inclusivity or general trans-friendliness. All users should be able to view a list of businesses and reviews, and should be able to sort/filter/group/search businesses and reviews. Users with an account should be able to add businesses to the index and create reviews for any business.
+#### [Epicodus][Epicodus] capstone project completed for C# and React Part-Time [coursework][coursework]. TransGuide is a mobile-friendly website that allows an authorized user to create anonymous reviews of businesses or medical establishments in terms of their trans-inclusivity or general trans-friendliness. All users should be able to view a list of businesses and reviews, and should be able to sort/filter/group/search businesses and reviews. Users with an account should be able to add businesses to the index and create reviews for any business.
+
+<img src="./src/img/Screenshot1.jpg" width="600px">
+<br></br>
+<img src="./src/img/Screenshot2.jpg" width="600px">
 
 ### Feature Goals:
-* Firebase database and Firebase authorization
-* Secure accounts setup
-* Add business listings/reviews
+* Firebase database and Firebase authorization ✅
+* Secure accounts setup ✅
+* Add business listings/reviews ✅
 * Search and group businesses by category, location
 * Sort businesses by properties
 
 ### Stretch Goals
 * Employee reviews of the business as well...
-* Accesible and mobile-friendly styling with semantic HTML and MUI
+* Accesible and mobile-friendly styling with semantic HTML and MUI ✅
 * Automated content moderation
 * User content reporting system
+
+### Additional Stretch Goals
+* Firebase storage for user-uploaded images
+* Radar API
+  - Address validation
+  - Geocoding and map tile for display on business detail page
+
 
 ## Technologies Used:
 * _Create-React-App_
@@ -24,6 +35,7 @@
 * _CSS_
 * _Javascript_
 * _React_
+* _React-Router_
 * _Firebase_
 * _MUI_
 
@@ -31,9 +43,16 @@
 This React app is a ratings and review website specificically for transgender people to share their experiences interacting with businesses. Users can create accounts, add business listings, and add reviews of businesses in terms of their inclusivity and trans-friendliness. The website emphasizes anonymity, account security, and accessibility. 
 
 ## Known Bugs
-
+* I failed to implement user uploaded images and firebase storage for these images
+  - I think there is an issue with CORS configuration, but I will need to try to implement this at a later time
+* 
 
 ## Setup/Installation Requirements
+* Clone this project from Github
+* In the root directory, create a .env and add it to a .gitignore file
+* Create a Firebase project and enable Authentication and Firestore Database
+* You can use the .env file to store your keys from the sdk configuration
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ### Available Scripts
