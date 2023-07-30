@@ -1,4 +1,4 @@
-# Epicodus Capstone Project: TransGuide Reviews
+# TransGuide Reviews
 
 ### By Dani Steely
 <hr>
@@ -90,6 +90,16 @@ You can **learn more** in the [Create React App documentation](https://facebook.
 
 To learn React, check out the [React documentation](https://reactjs.org/)
 
+## Photo attribution
+<img src="./src/img/transflag3.png" height="50px"><img>
+
+- [Creazilla flag clipart][photo link]
+- Author: Twitter
+- Attribution link: Twitter’s open source emoji
+- Sets: Twemoji 12.1.6
+- License:
+- Creative Commons Attribution 4.0. Free for editorial, educational, commercial, and/or personal projects. Attribution is required. [More info][more info].
+
 ## License
 
 _MIT License_
@@ -99,3 +109,5 @@ Copyright (c) _7/1/23_ _Dani Steely_
 [Epicodus]: https://www.epicodus.com/
 [coursework]: https://www.learnhowtoprogram.com/tracks/c-and-react-part-time
 [repo]: https://github.com/DaniS91/Capstone-Project
+[photo link]: https://creazilla.com/nodes/54390-transgender-flag-emoji-clipart
+[more info]: https://creativecommons.org/licenses/by/4.0/
