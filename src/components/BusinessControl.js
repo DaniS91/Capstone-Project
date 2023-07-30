@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Button, Stack, AppBar, Toolbar } from '@mui/material';
+import { Button, Stack, AppBar } from '@mui/material';
 
 import NewBusinessForm from "./NewBusinessForm";
 import BusinessList from "./BusinessList";

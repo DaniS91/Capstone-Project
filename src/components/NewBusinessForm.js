@@ -14,9 +14,10 @@ function NewBusinessForm(props){
     event.preventDefault();
     setStateValue(event.target.state.value);
     const photoFile = event.target.photo.files;
-    const imageName = v4();
-    const imageRef = ref(storage, `images/${imageName}`); 
+    
     if (photoFile) {
+      const imageName = v4();
+      const imageRef = ref(storage, `images/${imageName}`); 
       await uploadBytes(imageRef, photoFile);
       const photoURL = await getDownloadURL(imageRef);
       console.log(photoURL);
@@ -63,7 +64,9 @@ function NewBusinessForm(props){
     </React.Fragment>
   );
 }
+
 NewBusinessForm.propTypes = { 
   onNewBusinessCreation: PropTypes.func
 };
+
 export default NewBusinessForm;

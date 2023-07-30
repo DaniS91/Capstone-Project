@@ -21,7 +21,8 @@ const stateAbbreviations = [ 'AL', 'AK', 'AS', 'AZ', 'AR', 'CA', 'CO', 'CT', 'DE
         <TextField
           type='text'
           name='name'
-          label='Business Name' />
+          label='Business Name' 
+          required={true}/>
         <br></br>
         <TextField 
           type='text'
@@ -31,12 +32,14 @@ const stateAbbreviations = [ 'AL', 'AK', 'AS', 'AZ', 'AR', 'CA', 'CO', 'CT', 'DE
         <TextField 
           type='text'
           name='city'
-          label='City' />
+          label='City'
+          required={true} />
         <br></br>
         <TextField
           select 
           label="State:" 
           name="state"
+          required={true}
           id="state-select"
           value={props.stateValue}
           onChange={(e)=> props.setStateValue(e.target.value)}

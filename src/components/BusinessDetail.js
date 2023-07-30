@@ -42,7 +42,7 @@ function BusinessDetail(props){
           sx={{margin: '20px'}}>
       <Button 
         onClick={()=> onClickingReview(business.id)}
-        color="success"
+        color="warning"
         size="small" 
         variant="contained"
         startIcon={<RateReviewIcon />}
