@@ -21,7 +21,7 @@ function App(){
         main: '#E74C3C',
       },
       warning: {
-        main: '#F7CA18',
+        main: '#F89406',
       },
       info: {
         main: '#3ca1af',
